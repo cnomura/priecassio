@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Casamento de Priscilla e Cássio — 19 de Dezembro de 2026, Uberlândia - MG">
+    <title>Priscilla & Cássio — 19.12.2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── RESET & TOKENS ─────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green:    #4E7B3B;
+            --purple:   #7A3B76;
+            --dark:     #303B2B;
+            --lavender: #CFA9CD;
+            --mint:     #DAFACD;
+            --bg:       #FAF8F2;
+            --bg2:      #F2EFE5;
+            --text:     #2C2A25;
+            --muted:    #5C5244;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+
+        /* ── NAVIGATION ─────────────────────────────────────── */
+        #nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 2.5rem;
+            transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+        }
+
+        #nav.scrolled {
+            background: rgba(250, 248, 242, 0.97);
+            box-shadow: 0 1px 24px rgba(48,59,43,.08);
+            backdrop-filter: blur(10px);
+            padding: 0.7rem 2.5rem;
+        }
+
+        .nav-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--dark);
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--green); }
+
+        /* ── HAMBURGER ──────────────────────────────────────── */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            position: relative;
+            z-index: 6;           /* above overlay within nav stacking ctx */
+            width: 36px; height: 36px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px; height: 2px;
+            background: var(--dark);
+            transition: transform 0.3s, opacity 0.2s;
+            transform-origin: center;
+        }
+        /* hamburger → X */
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── HERO ───────────────────────────────────────────── */
+        #hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: var(--bg);
+        }
+
+        /* photo as atmospheric texture */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url("assets/photos/LN-110.jpg") center 30% / cover no-repeat;
+            filter: brightness(0.18) saturate(0.45);
+            transform: scale(1.03);
+            transition: transform 8s ease-out;
+        }
+        .hero-bg.loaded { transform: scale(1); }
+
+        /* cream veil over the photo */
+        .hero-veil {
+            position: absolute;
+            inset: 0;
+            background: rgba(250, 248, 242, 0.87);
+        }
+
+        /* pattern over everything */
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background: url("assets/background.png") center / 820px;
+            opacity: 0.12;
+            mix-blend-mode: multiply;
+        }
+
+        /* all content sits above the layers — no z-index so mix-blend-mode works across layers */
+        .hero-content {
+            position: relative;
+            color: var(--dark);
+            padding: 7rem 1.5rem 4rem;
+            width: 100%;
+            max-width: 900px;
+            animation: heroFadeIn 1.4s ease both;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 1.05;
+            color: var(--dark);
+        }
+
+        .hero-amp {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-style: italic;
+            font-weight: 300;
+            color: var(--purple);
+            margin: 0 0.3rem;
+        }
+
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.9rem, 2vw, 1.15rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 0.5rem;
+        }
+
+        /* floral divider in hero */
+        .hero-floral {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin: 2rem 0;
+        }
+        .hero-floral img {
+            display: block;
+            width: 100%;
+            opacity: 0.85;
+        }
+
+        /* portraits inside hero */
+        .portraits {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3rem;
+            flex-wrap: nowrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .portrait { text-align: center; }
+
+        .portrait img {
+            margin: 0 auto;
+            transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+        }
+        .portrait img:hover { transform: translateY(-8px) rotate(-1deg); }
+
+        .portrait-lg img { width: 160px; }
+        .portrait-sm img { width: 120px; }
+
+        .portrait-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-top: 0.8rem;
+        }
+
+        .portrait-role {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 0.1rem;
+        }
+
+        /* ── COUNTDOWN ──────────────────────────────────────── */
+        .countdown {
+            display: inline-flex;
+            align-items: stretch;
+        }
+
+        .cd-unit {
+            text-align: center;
+            padding: 0 1.2rem;
+            border-right: 1px solid rgba(48,59,43,0.15);
+        }
+        .cd-unit:last-child { border-right: none; }
+
+        .cd-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1;
+            color: var(--dark);
+            display: block;
+        }
+
+        .cd-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0.4;
+            animation: heroFadeIn 2s ease 1.5s both;
+        }
+
+        .scroll-cue-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--dark), transparent);
+            animation: scrollDrop 2s infinite;
+        }
+
+        @keyframes scrollDrop {
+            0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+            40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            80%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        }
+
+        /* ── SHARED LAYOUT ──────────────────────────────────── */
+        .section { padding: 7rem 0; }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .sec-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .sec-eye {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .sec-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .sec-rule {
+            width: 50px; height: 1px;
+            background: var(--lavender);
+            margin: 1.2rem auto 0;
+        }
+
+        /* ── SECTION DIVIDERS (repeated between sections) ───── */
+        /* margin-left instead of transform — avoids stacking context that breaks mix-blend-mode */
+        .div-cherub,
+        .div-floral {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .div-cherub img,
+        .div-floral img {
+            display: block;
+            width: 100%;
+            opacity: 0.85;
+        }
+
+        /* cherub divider needs a bit of height padding */
+        .div-cherub { padding: 1rem 0; }
+        .div-floral { padding: 0.5rem 0; }
+
+        /* ── WELCOME ────────────────────────────────────────── */
+        #welcome {
+            background-color: var(--bg);
+            background-image: url("assets/background.png");
+            background-size: 820px;
+            background-repeat: repeat;
+            padding: 4rem 0 5rem;
+        }
+
+        /* cherubs break to full viewport width */
+        .divider-cherub {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            overflow: hidden;
+            line-height: 0;
+            margin-bottom: 3rem;
+        }
+
+        .divider-cherub img {
+            display: block;
+            width: 100%;
+            opacity: 0.85;
+        }
+
+        .welcome-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+            font-style: italic;
+            color: var(--text);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 2;
+        }
+
+        .welcome-sig {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: var(--green);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* ── NOSSA HISTÓRIA ─────────────────────────────────── */
+        #historia {
+            background-color: var(--bg2);
+            background-image: url("assets/background.png");
+            background-size: 820px;
+            background-repeat: repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .historia-prose {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text);
+            text-align: center;
+            max-width: 660px;
+            margin: 0 auto;
+            line-height: 2;
+        }
+
+        .historia-prose p + p { margin-top: 1.4rem; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 560px;
+            margin: 5rem auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--lavender) 10%, var(--lavender) 90%, transparent);
+            transform: translateX(-50%);
+        }
+
+        .tl-item {
+            display: grid;
+            grid-template-columns: 1fr 28px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .tl-item:nth-child(odd)  .tl-body { grid-column: 1; text-align: right; }
+        .tl-item:nth-child(odd)  .tl-void { grid-column: 3; }
+        .tl-item:nth-child(even) .tl-body { grid-column: 3; text-align: left; }
+        .tl-item:nth-child(even) .tl-void { grid-column: 1; }
+
+        .tl-dot {
+            grid-column: 2;
+            justify-self: center;
+            margin-top: 6px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--green);
+            border: 3px solid var(--bg2);
+            box-shadow: 0 0 0 1px var(--green);
+        }
+
+        .tl-dot.special {
+            background: var(--purple);
+            box-shadow: 0 0 0 1px var(--purple);
+        }
+
+        .tl-year {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: var(--purple);
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+        }
+
+        .tl-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── O GRANDE DIA ───────────────────────────────────── */
+        #grande-dia {
+            background: var(--dark);
+            color: #fff;
+            padding: 7rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #grande-dia::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("assets/background.png") center / 820px;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        #grande-dia .sec-eye    { color: var(--mint); }
+        #grande-dia .sec-title  { color: #fff; }
+        #grande-dia .sec-rule   { background: var(--lavender); }
+
+        .day-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .day-card {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.04);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .day-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.22);
+        }
+
+        .day-type {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--mint);
+            margin-bottom: 0.8rem;
+        }
+
+        .day-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .day-time {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: var(--lavender);
+            margin: 0.7rem 0;
+        }
+
+        .day-address {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            margin-bottom: 1.4rem;
+        }
+
+        .btn-map {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.22);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.25s;
+        }
+        .btn-map:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-color: rgba(255,255,255,0.45);
+        }
+
+        .dresscode {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+
+        .dresscode-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--mint);
+            margin-bottom: 0.7rem;
+        }
+
+        .dresscode-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 0.7rem;
+        }
+
+        .dresscode-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.5);
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        /* ── GALLERY ────────────────────────────────────────── */
+        #galeria {
+            background-color: var(--bg);
+            background-image: url("assets/background.png");
+            background-size: 820px;
+            background-repeat: repeat;
+            padding: 7rem 0;
+        }
+
+        .gallery-grid {
+            columns: 3;
+            column-gap: 10px;
+            margin-top: 3rem;
+        }
+
+        .g-item {
+            break-inside: avoid;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border-radius: 3px;
+            cursor: zoom-in;
+        }
+
+        .g-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.55s cubic-bezier(.25,.46,.45,.94), filter 0.3s;
+        }
+        .g-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.06) saturate(1.1);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.93);
+            z-index: 900;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox.open { display: flex; }
+
+        #lb-img {
+            max-width: 88vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 3px;
+            user-select: none;
+        }
+
+        .lb-btn {
+            position: absolute;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.55);
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+            padding: 0.8rem 1.2rem;
+        }
+        .lb-btn:hover { color: #fff; }
+        .lb-close { top: 1rem; right: 1.2rem; font-size: 1.8rem; }
+        .lb-prev  { left: 0.5rem; top: 50%; transform: translateY(-50%); }
+        .lb-next  { right: 0.5rem; top: 50%; transform: translateY(-50%); }
+
+        /* ── INFORMAÇÕES ────────────────────────────────────── */
+        #informacoes {
+            background-color: var(--bg2);
+            background-image: url("assets/background.png");
+            background-size: 820px;
+            background-repeat: repeat;
+            padding: 7rem 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.4rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: var(--bg);
+            border: 1px solid rgba(78,123,59,.1);
+            border-radius: 6px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .info-card:hover {
+            border-color: rgba(78,123,59,.3);
+            transform: translateY(-3px);
+        }
+
+        .info-icon { font-size: 1.9rem; margin-bottom: 0.9rem; }
+
+        .info-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        /* ── PRESENTES ──────────────────────────────────────── */
+        #presentes {
+            background-color: #EDE5EF;
+            background-image: url("assets/background.png");
+            background-size: 820px;
+            background-repeat: repeat;
+            padding: 7rem 0;
+            text-align: center;
+        }
+
+        #presentes .sec-eye   { color: var(--purple); }
+        #presentes .sec-title { color: var(--dark); }
+        #presentes .sec-rule  { background: var(--purple); }
+
+        .presentes-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text);
+            max-width: 520px;
+            margin: 2rem auto;
+            line-height: 1.9;
+        }
+
+        .btn-gift {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--dark);
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: background 0.25s, transform 0.25s;
+            margin-top: 0.5rem;
+        }
+        .btn-gift:hover {
+            background: var(--purple);
+            transform: translateY(-3px);
+        }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,.5);
+            text-align: center;
+            padding: 4.5rem 2rem;
+        }
+
+        .footer-car {
+            width: 110px;
+            margin: 0 auto 1.5rem;
+            filter: brightness(0) invert(1);
+            opacity: 0.55;
+        }
+
+        .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .footer-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ── REVEAL ANIMATION ───────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        .reveal.delay-3 { transition-delay: 0.3s; }
+        .reveal.in { opacity: 1; transform: none; }
+
+        /* ── MOBILE MENU OVERLAY (fora do nav para evitar backdrop-filter containment) */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 150;          /* abaixo do nav (200), acima do conteúdo */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--green); }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .nav-links  { display: none; }   /* links desktop somem no mobile */
+            .nav-toggle { display: flex; }
+
+            /* hero portraits on mobile */
+            .portraits { gap: 1.5rem; }
+            .portrait-lg img { width: 120px; }
+            .portrait-sm img { width: 90px; }
+            .portrait-name { font-size: 1.3rem; }
+            .portrait-role { font-size: 0.78rem; }
+
+            /* timeline */
+            .timeline::before { left: 12px; transform: none; }
+            .tl-item {
+                grid-template-columns: 28px 1fr;
+                gap: 1rem;
+            }
+            .tl-item .tl-dot,
+            .tl-item:nth-child(odd) .tl-dot,
+            .tl-item:nth-child(even) .tl-dot { grid-column: 1; }
+            .tl-item .tl-body,
+            .tl-item:nth-child(odd) .tl-body,
+            .tl-item:nth-child(even) .tl-body { grid-column: 2; text-align: left; }
+            .tl-item .tl-void,
+            .tl-item:nth-child(odd) .tl-void,
+            .tl-item:nth-child(even) .tl-void { display: none; }
+
+            .gallery-grid { columns: 2; }
+            .section { padding: 5rem 0; }
+            .cd-unit { padding: 0 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { columns: 1; }
+            .hero-content { padding: 6rem 1rem 3rem; }
+            #welcome, #historia, #galeria, #informacoes, #presentes { background-size: 420px; }
+            .hero-pattern { background-size: 420px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ────────────────── NAV ────────────────── -->
+<nav id="nav">
+    <a href="#hero" class="nav-logo">P & C</a>
+    <ul class="nav-links">
+        <li><a href="#historia">Nossa História</a></li>
+        <li><a href="#grande-dia">O Grande Dia</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#informacoes">Informações</a></li>
+        <li><a href="#presentes">Presentes</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Menu mobile — fora do nav para que position:fixed funcione independente do backdrop-filter -->
+<ul class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <li><a href="#historia"    class="mob-link">Nossa História</a></li>
+    <li><a href="#grande-dia"  class="mob-link">O Grande Dia</a></li>
+    <li><a href="#galeria"     class="mob-link">Galeria</a></li>
+    <li><a href="#informacoes" class="mob-link">Informações</a></li>
+    <li><a href="#presentes"   class="mob-link">Presentes</a></li>
+</ul>
+
+<!-- ────────────────── HERO ────────────────── -->
+<section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-pattern"></div>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow">Uberlândia &middot; Minas Gerais</p>
+        <h1 class="hero-names">Priscilla <span class="hero-amp">&amp;</span> Cássio</h1>
+        <p class="hero-date">19 &nbsp;&middot;&nbsp; 12 &nbsp;&middot;&nbsp; 2026</p>
+
+        <!-- flores como divisor acima dos retratos -->
+        <div class="hero-floral">
+            <img src="assets/flores.png" alt="">
+        </div>
+
+        <!-- retratos — sem .reveal para não criar stacking context que quebra mix-blend-mode -->
+        <div class="portraits">
+            <div class="portrait portrait-lg">
+                <img src="assets/avatar-pri.png" alt="Priscilla">
+                <p class="portrait-name">Priscilla</p>
+                <p class="portrait-role">A Noiva</p>
+            </div>
+            <div class="portrait portrait-sm">
+                <img src="assets/avatar-flora.png" alt="Maria Flora">
+                <p class="portrait-name">Maria Flora</p>
+                <p class="portrait-role">A alegria da família</p>
+            </div>
+            <div class="portrait portrait-lg">
+                <img src="assets/avatar-cassio.png" alt="Cássio">
+                <p class="portrait-name">Cássio</p>
+                <p class="portrait-role">O Noivo</p>
+            </div>
+        </div>
+
+        <!-- countdown -->
+        <div class="countdown" id="countdown">
+            <div class="cd-unit">
+                <span class="cd-num" id="cd-d">—</span>
+                <span class="cd-label">dias</span>
+            </div>
+            <div class="cd-unit">
+                <span class="cd-num" id="cd-h">—</span>
+                <span class="cd-label">horas</span>
+            </div>
+            <div class="cd-unit">
+                <span class="cd-num" id="cd-m">—</span>
+                <span class="cd-label">minutos</span>
+            </div>
+            <div class="cd-unit">
+                <span class="cd-num" id="cd-s">—</span>
+                <span class="cd-label">segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-cue"><div class="scroll-cue-line"></div></div>
+</section>
+
+<!-- ────────────────── WELCOME ────────────────── -->
+<section id="welcome">
+    <div class="container">
+        <div class="divider-cherub">
+            <img src="assets/anjos.png" alt="">
+        </div>
+        <p class="welcome-body reveal">
+            Depois de muitos anos de parceria, mudanças, desafios, conquistas
+            e da nossa maior bênção, a pequena Maria Flora, chegou o momento de
+            celebrarmos esse capítulo tão especial ao lado das pessoas que amamos.<br><br>
+            Criamos este espaço para compartilhar com vocês todos os detalhes do
+            nosso grande dia. Estamos muito felizes em viver esse momento cercados
+            de amigos e familiares tão importantes na nossa história.
+        </p>
+        <p class="welcome-sig reveal delay-1">Pri &amp; Cássio</p>
+    </div>
+</section>
+
+<!-- ────────────────── NOSSA HISTÓRIA ────────────────── -->
+<section id="historia" class="section">
+
+    <!-- floral como transição do welcome → história -->
+    <div class="container" style="position:relative">
+        <div class="div-floral">
+            <img src="assets/flores.png" alt="">
+        </div>
+
+        <div class="sec-header reveal">
+            <span class="sec-eye">Como tudo começou</span>
+            <h2 class="sec-title">Nossa História</h2>
+            <div class="sec-rule"></div>
+        </div>
+
+        <div class="historia-prose reveal">
+            <p>
+                Nossa história começou em 2016, de uma forma simples e inesperada —
+                uma conversinha aqui e ali online. Aos poucos, aquilo que era apenas
+                passa-tempo se transformou em amor, parceria e em uma conexão que
+                só cresceu ao longo dos anos.
+            </p>
+            <p>
+                Vivemos muitas fases juntos, construímos sonhos, atravessamos mudanças
+                importantes e, há alguns anos, começamos uma nova vida em outro país.
+                Em cada passo dessa caminhada, estivemos lado a lado —
+                rindo, chorando, vivendo essa loucura que se chama amor.
+            </p>
+            <p>
+                E sem avisos então, chegou a nossa maior alegria: Maria Flora,
+                a nossa menina moleca, que trouxe ainda mais amor e significado
+                para a nossa vida e família. A nossa força para sermos,
+                a cada dia, melhores.
+            </p>
+            <p>
+                Agora, voltamos para Uberlândia, a cidade onde nos conhecemos
+                e onde tudo começou, para celebrar nossa união com as pessoas
+                mais importantes de nossas vidas. Esse casamento representa muito
+                mais do que uma cerimônia: é a concretização de tudo o que
+                vivemos até aqui.
+            </p>
+        </div>
+
+        <div class="timeline reveal">
+            <div class="tl-item">
+                <div class="tl-body">
+                    <p class="tl-year">2016</p>
+                    <p class="tl-desc">Uma mensagem perdida no meio de tantas outras — e foi por ali que tudo começou</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-void"></div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-void"></div>
+                <div class="tl-dot"></div>
+                <div class="tl-body">
+                    <p class="tl-year">Os anos que se seguiram</p>
+                    <p class="tl-desc">Cada mudança de fase, cada coisa nova que apareceu na vida — a gente foi junto</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-body">
+                    <p class="tl-year">Outro país</p>
+                    <p class="tl-desc">Desembarcamos com as malas, montamos um lar e chamamos de casa</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div class="tl-void"></div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-void"></div>
+                <div class="tl-dot"></div>
+                <div class="tl-body">
+                    <p class="tl-year">Maria Flora</p>
+                    <p class="tl-desc">Chegou do nada e ensinou a gente o que é amar de um jeito que a gente nem sabia que existia</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-body">
+                    <p class="tl-year">19.12.2026</p>
+                    <p class="tl-desc">O sim que a gente já sabia que ia chegar — agora de volta onde tudo começou</p>
+                </div>
+                <div class="tl-dot special"></div>
+                <div class="tl-void"></div>
+            </div>
+        </div>
+
+        <!-- anjos como transição de história → grande dia -->
+        <div class="div-cherub" style="margin-top:4rem;">
+            <img src="assets/anjos.png" alt="">
+        </div>
+    </div>
+</section>
+
+<!-- ────────────────── O GRANDE DIA ────────────────── -->
+<section id="grande-dia">
+    <div class="container" style="position:relative">
+        <div class="sec-header reveal">
+            <span class="sec-eye">19 de Dezembro de 2026</span>
+            <h2 class="sec-title">O Grande Dia</h2>
+            <div class="sec-rule"></div>
+        </div>
+
+        <div class="day-cards">
+            <div class="day-card reveal delay-1">
+                <p class="day-type">Cerimônia</p>
+                <h3 class="day-name">Igreja Nossa Senhora<br>do Rosário</h3>
+                <p class="day-time">11:00</p>
+                <p class="day-address">
+                    Igreja Nossa Senhora do Rosário de Uberlândia<br>
+                    Bem Tombado · Uberlândia, MG
+                </p>
+                <a href="https://maps.app.goo.gl/cyeXFkdD5KDiEaPYA"
+                   target="_blank" rel="noopener" class="btn-map">Ver no Mapa →</a>
+            </div>
+            <div class="day-card reveal delay-2">
+                <p class="day-type">Recepção</p>
+                <h3 class="day-name">Chácara<br>Bela Vista</h3>
+                <p class="day-time">12:30</p>
+                <p class="day-address">
+                    Chácara Bela Vista<br>
+                    Uberlândia, MG
+                </p>
+                <a href="https://maps.app.goo.gl/HjDWqmndZF9wbuJT9"
+                   target="_blank" rel="noopener" class="btn-map">Ver no Mapa →</a>
+            </div>
+        </div>
+
+        <div class="dresscode reveal">
+            <p class="dresscode-label">Traje</p>
+            <p class="dresscode-title">Esporte Fino</p>
+            <p class="dresscode-note">
+                Dezembro no Brasil pede roupa leve — vem confortável e bonito do jeito que você preferir.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ────────────────── GALERIA ────────────────── -->
+<section id="galeria">
+    <div class="container">
+        <div class="div-floral">
+            <img src="assets/flores.png" alt="">
+        </div>
+
+        <div class="sec-header reveal">
+            <span class="sec-eye">Nossas memórias</span>
+            <h2 class="sec-title">Galeria</h2>
+            <div class="sec-rule"></div>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="g-item"><img src="assets/photos/LN-104.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7864.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-105.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7870.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-106.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-107.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7874.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-108.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-109.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7877.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-110.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7880.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-111.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-112.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7896.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-113.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-114.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7917.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-115.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-116.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_7922.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-117.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-118.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/_MG_6542.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-119.jpg" alt="" loading="lazy"></div>
+            <div class="g-item"><img src="assets/photos/LN-120.jpg" alt="" loading="lazy"></div>
+        </div>
+    </div>
+
+    <div id="lightbox">
+        <button class="lb-btn lb-close" id="lbClose">×</button>
+        <button class="lb-btn lb-prev"  id="lbPrev">&#8249;</button>
+        <img id="lb-img" src="" alt="">
+        <button class="lb-btn lb-next"  id="lbNext">&#8250;</button>
+    </div>
+</section>
+
+<!-- ────────────────── INFORMAÇÕES ────────────────── -->
+<section id="informacoes" class="section">
+    <!-- anjos acima das informações -->
+    <div class="container">
+        <div class="div-cherub">
+            <img src="assets/anjos.png" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-eye">Tudo que você precisa saber</span>
+            <h2 class="sec-title">Informações</h2>
+            <div class="sec-rule"></div>
+        </div>
+        <div class="info-grid">
+            <div class="info-card reveal delay-1">
+                <div class="info-icon">🚗</div>
+                <h3 class="info-title">Estacionamento</h3>
+                <p class="info-text">
+                    Tem estacionamento tanto na igreja quanto na Chácara. Pode vir de carro sem preocupação.
+                </p>
+            </div>
+            <div class="info-card reveal delay-2">
+                <div class="info-icon">🏨</div>
+                <h3 class="info-title">Hospedagem</h3>
+                <p class="info-text">
+                    Tem bastante hotel em Uberlândia — é só dar uma busca nas proximidades. Quanto antes reservar, melhor!
+                </p>
+            </div>
+            <div class="info-card reveal delay-3">
+                <div class="info-icon">✈️</div>
+                <h3 class="info-title">Como Chegar</h3>
+                <p class="info-text">
+                    Uberlândia tem aeroporto com voos diretos de SP e outros estados. De carro, é fácil pela BR-050 ou BR-365.
+                </p>
+            </div>
+            <div class="info-card reveal delay-1">
+                <div class="info-icon">📋</div>
+                <h3 class="info-title">Confirmação de Presença</h3>
+                <p class="info-text">
+                    Em breve traremos mais detalhes aqui sobre como confirmar. Fica de olho!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ────────────────── PRESENTES ────────────────── -->
+<section id="presentes">
+    <div class="container">
+        <!-- flores acima dos presentes -->
+        <div class="div-floral">
+            <img src="assets/flores.png" alt="">
+        </div>
+
+        <div class="sec-header reveal">
+            <span class="sec-eye">Com muito amor</span>
+            <h2 class="sec-title">Lista de Presentes</h2>
+            <div class="sec-rule"></div>
+        </div>
+        <p class="presentes-text reveal">
+            Agradecemos demais ter você em nossas vidas — poder partilhar esse
+            momento com você já é o maior presente. Mas se quiser nos dar um
+            empurrãozinho, tem uma listinha esperando por você!
+        </p>
+        <a href="https://priecassio.casar.com" target="_blank" rel="noopener"
+           class="btn-gift reveal delay-1">
+            Ver Lista de Presentes
+        </a>
+    </div>
+</section>
+
+<!-- ────────────────── FOOTER ────────────────── -->
+<footer>
+    <img src="assets/carro.png" alt="P + C" class="footer-car">
+    <p class="footer-names">Priscilla &amp; Cássio</p>
+    <p class="footer-date">19 &middot; 12 &middot; 2026 &middot; Uberlândia, MG</p>
+    <p class="footer-note">Nos vemos no dia 19 ♡</p>
+</footer>
+
+<script>
+    /* ── Countdown ── */
+    const wedding = new Date('2026-12-19T11:00:00-03:00').getTime();
+
+    function tick() {
+        const now  = Date.now();
+        const diff = wedding - now;
+
+        if (diff <= 0) {
+            document.getElementById('countdown').innerHTML =
+                '<p style="font-family:\'Great Vibes\',cursive;font-size:2.2rem;color:var(--dark)">É hoje! ♡</p>';
+            return;
+        }
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000)  / 60000);
+        const s = Math.floor((diff % 60000)    / 1000);
+
+        document.getElementById('cd-d').textContent = String(d).padStart(3,'0');
+        document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+        document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+        document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── Mobile nav ── */
+    const toggle     = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        mobileMenu.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeNav() {
+        mobileMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeNav));
+
+    /* ── Reveal on scroll ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => io.observe(r));
+
+    /* ── Hero bg texture ── */
+    window.addEventListener('load', () => {
+        document.getElementById('heroBg').classList.add('loaded');
+    });
+
+    /* ── Lightbox ── */
+    const imgs   = [...document.querySelectorAll('.g-item img')];
+    const lb     = document.getElementById('lightbox');
+    const lbImg  = document.getElementById('lb-img');
+    let   lbIdx  = 0;
+
+    function lbOpen(i) {
+        lbIdx = i;
+        lbImg.src = imgs[i].src;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function lbNav(dir) {
+        lbIdx = (lbIdx + dir + imgs.length) % imgs.length;
+        lbImg.src = imgs[lbIdx].src;
+    }
+
+    imgs.forEach((img, i) => img.parentElement.addEventListener('click', () => lbOpen(i)));
+    document.getElementById('lbClose').addEventListener('click', lbClose);
+    document.getElementById('lbPrev').addEventListener('click', () => lbNav(-1));
+    document.getElementById('lbNext').addEventListener('click', () => lbNav(+1));
+    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+    document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape')      lbClose();
+        if (e.key === 'ArrowLeft')   lbNav(-1);
+        if (e.key === 'ArrowRight')  lbNav(+1);
+    });
+
+    let touchX = 0;
+    lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+    lb.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) lbNav(dx < 0 ? 1 : -1);
+    });
+</script>
+</body>
+</html>
