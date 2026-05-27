@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Casamento de Priscilla e Cássio — 19 de Dezembro de 2026, Uberlândia - MG">
-    <title>Priscilla & Cássio — 19.12.2026</title>
+    <title>Pri & Cássio — 19.12.2026</title>
+
+    <link rel="icon" href="assets/Logo/4.svg" type="image/svg+xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,8 +41,8 @@
             --mint:     #F2D027;
             --bg:       #F8F2E9;
             --bg2:      #EEE5D8;
-            --text:     #2A1F1A;
-            --muted:    #7A5E50;
+            --text:     #717D3B;
+            --muted:    #7A7A4A;
         }
 
         html { scroll-behavior: smooth; }
@@ -50,7 +52,8 @@
             background: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            line-height: 2.0;
+            line-height: 2.1;
+            letter-spacing: 0.03em;
         }
 
         img { max-width: 100%; display: block; }
@@ -64,7 +67,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg);
+            background-color: var(--bg);
+            background-image: url('assets/background listrado.png');
+            background-size: cover;
+            background-position: center;
             transition: opacity 0.9s ease, visibility 0.9s ease;
         }
         #splash.hidden {
@@ -86,24 +92,21 @@
             animation: splashBreath 3.5s ease-in-out infinite;
         }
         .splash-logo {
-            width: min(340px, 72vw);
+            width: min(480px, 82vw);
             height: auto;
-            filter: drop-shadow(0 8px 28px rgba(217,61,118,0.18));
+            filter: brightness(0) saturate(100%) invert(44%) sepia(30%) saturate(570%) hue-rotate(52deg) brightness(93%);
         }
         @keyframes splashBreath {
             0%, 100% { transform: scale(1); }
             50%       { transform: scale(1.025); }
         }
-        .splash-enter {
+        .splash-welcome {
             font-family: 'Lazy Designer', Georgia, serif;
-            font-size: 1.25rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-            animation: splashHint 2.2s ease-in-out infinite;
-        }
-        @keyframes splashHint {
-            0%, 100% { opacity: 0.35; transform: translateY(0); }
-            50%       { opacity: 0.8;  transform: translateY(5px); }
+            font-size: 1.3rem;
+            color: var(--green);
+            letter-spacing: 0.12em;
+            opacity: 0.75;
+            text-align: center;
         }
 
         /* ── NAVIGATION ─────────────────────────────────────── */
@@ -126,12 +129,18 @@
         }
 
         .nav-logo {
-            font-family: 'Turquoise Kimono', cursive;
-            font-size: 2rem;
-            color: var(--dark);
             text-decoration: none;
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            height: 80px;
+            width: auto;
+            display: block;
+            filter: brightness(0) saturate(100%) invert(44%) sepia(30%) saturate(570%) hue-rotate(52deg) brightness(93%);
         }
 
         .nav-links {
@@ -143,8 +152,8 @@
         .nav-links a {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.1rem;
-            letter-spacing: 0.06em;
-            color: var(--dark);
+            letter-spacing: 0.08em;
+            color: var(--green);
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -167,7 +176,7 @@
         .nav-toggle span {
             display: block;
             width: 22px; height: 2px;
-            background: var(--dark);
+            background: var(--green);
             transition: transform 0.3s, opacity 0.2s;
             transform-origin: center;
         }
@@ -208,7 +217,7 @@
 
         .hero-content {
             position: relative;
-            color: var(--dark);
+            color: var(--green);
             padding: 7rem 1.5rem 4rem;
             width: 100%;
             max-width: 900px;
@@ -223,16 +232,17 @@
         .hero-eyebrow {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.2rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--green);
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .hero-names {
             font-family: 'Turquoise Kimono', cursive;
             font-size: clamp(4rem, 11vw, 8rem);
-            line-height: 1.15;
-            color: var(--dark);
+            font-weight: normal;
+            line-height: 2.15;
+            color: var(--green);
         }
 
         .hero-amp {
@@ -246,21 +256,9 @@
         .hero-date {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-            letter-spacing: 0.25em;
+            letter-spacing: 0.28em;
             color: var(--muted);
-            margin-top: 0.7rem;
-        }
-
-        .hero-floral {
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            margin: 2rem 0;
-        }
-        .hero-floral img {
-            display: block;
-            width: 100%;
-            opacity: 0.85;
+            margin-top: 0.8rem;
         }
 
         .portraits {
@@ -269,7 +267,7 @@
             align-items: flex-end;
             gap: 4.5rem;
             flex-wrap: nowrap;
-            margin-bottom: 3rem;
+            margin: 3rem 0;
         }
 
         .portrait { text-align: center; }
@@ -286,16 +284,17 @@
         .portrait-name {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.9rem;
-            color: var(--dark);
+            color: var(--green);
             margin-top: 1rem;
+            letter-spacing: 0.05em;
         }
 
         .portrait-role {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.1rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.07em;
             color: var(--muted);
-            margin-top: 0.25rem;
+            margin-top: 0.3rem;
         }
 
         /* ── COUNTDOWN ──────────────────────────────────────── */
@@ -307,23 +306,31 @@
         .cd-unit {
             text-align: center;
             padding: 0 1.8rem;
-            border-right: 1px solid rgba(42,31,26,0.15);
+            border-right: 1px solid rgba(242,110,80,0.2);
         }
         .cd-unit:last-child { border-right: none; }
+
+        .countdown-intro {
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+        }
 
         .cd-num {
             font-family: 'Schoolbell', cursive;
             font-size: clamp(2.4rem, 5.5vw, 3.4rem);
             font-weight: normal;
             line-height: 1;
-            color: var(--dark);
+            color: var(--lavender);
             display: block;
         }
 
         .cd-label {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--muted);
             display: block;
             margin-top: 0.5rem;
@@ -335,21 +342,29 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            opacity: 0.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
             animation: heroFadeIn 2s ease 1.5s both;
         }
 
         .scroll-cue-line {
-            width: 1px; height: 40px;
-            background: linear-gradient(to bottom, var(--dark), transparent);
-            animation: scrollDrop 2s infinite;
+            width: 1px; height: 32px;
+            background: linear-gradient(to bottom, var(--green), transparent);
         }
 
-        @keyframes scrollDrop {
-            0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
-            40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-            80%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        .scroll-cue-arrow {
+            font-size: 1.4rem;
+            color: var(--green);
+            opacity: 0.5;
+            animation: scrollBounce 2s ease-in-out infinite;
+            line-height: 1;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50%       { transform: translateY(6px); opacity: 0.8; }
         }
 
         /* ── SHARED LAYOUT ──────────────────────────────────── */
@@ -368,67 +383,31 @@
 
         .sec-eye {
             font-family: 'Lazy Designer', Georgia, serif;
-            font-size: 1.2rem;
-            letter-spacing: 0.08em;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
             color: var(--green);
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .sec-title {
             font-family: 'Turquoise Kimono', cursive;
-            font-size: clamp(3rem, 7vw, 5rem);
-            color: var(--dark);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: normal;
+            color: var(--green);
             line-height: 1.1;
         }
 
         .sec-rule {
             width: 50px; height: 1px;
             background: var(--lavender);
-            margin: 1.2rem auto 0;
+            margin: 1.4rem auto 0;
         }
-
-        /* ── SECTION DIVIDERS ────────────────────────────────── */
-        .div-cherub,
-        .div-floral {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            margin-left: -50vw;
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        .div-cherub img,
-        .div-floral img {
-            display: block;
-            width: 100%;
-            opacity: 0.85;
-        }
-
-        .div-cherub { padding: 1rem 0; }
-        .div-floral { padding: 0.5rem 0; }
 
         /* ── WELCOME ────────────────────────────────────────── */
         #welcome {
             background-color: var(--bg);
             padding: 5rem 0 6rem;
-        }
-
-        .divider-cherub {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            margin-left: -50vw;
-            overflow: hidden;
-            line-height: 0;
-            margin-bottom: 3rem;
-        }
-
-        .divider-cherub img {
-            display: block;
-            width: 100%;
-            opacity: 0.85;
         }
 
         .welcome-body {
@@ -438,7 +417,7 @@
             text-align: center;
             max-width: 740px;
             margin: 0 auto;
-            line-height: 2.1;
+            line-height: 2.2;
         }
 
         .welcome-sig {
@@ -463,10 +442,10 @@
             text-align: center;
             max-width: 700px;
             margin: 0 auto;
-            line-height: 2.1;
+            line-height: 2.2;
         }
 
-        .historia-prose p + p { margin-top: 1.4rem; }
+        .historia-prose p + p { margin-top: 1.6rem; }
 
         /* Timeline */
         .timeline {
@@ -525,22 +504,20 @@
             font-family: 'Schoolbell', cursive;
             font-size: 1.2rem;
             color: var(--muted);
-            line-height: 1.9;
+            line-height: 2.0;
         }
 
         /* ── O GRANDE DIA ───────────────────────────────────── */
         #grande-dia {
-            background: var(--dark);
-            color: #fff;
+            background: var(--bg);
+            color: var(--text);
             padding: 7rem 0;
             position: relative;
             overflow: hidden;
         }
 
-        #grande-dia::before { display: none; }
-
-        #grande-dia .sec-eye    { color: var(--mint); }
-        #grande-dia .sec-title  { color: #fff; }
+        #grande-dia .sec-eye    { color: var(--green); }
+        #grande-dia .sec-title  { color: var(--green); font-size: clamp(4rem, 9vw, 7rem); }
         #grande-dia .sec-rule   { background: var(--lavender); }
 
         .day-cards {
@@ -550,32 +527,33 @@
         }
 
         .day-card {
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(113,125,59,0.18);
             border-radius: 6px;
             padding: 3.5rem 2.5rem;
             text-align: center;
-            background: rgba(255,255,255,0.04);
-            transition: background 0.3s, border-color 0.3s;
+            background: rgba(255,255,255,0.6);
+            transition: background 0.3s, border-color 0.3s, transform 0.3s;
         }
         .day-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.22);
+            background: rgba(255,255,255,0.9);
+            border-color: rgba(113,125,59,0.35);
+            transform: translateY(-3px);
         }
 
         .day-type {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.15rem;
-            letter-spacing: 0.08em;
-            color: var(--mint);
+            letter-spacing: 0.1em;
+            color: var(--green);
             margin-bottom: 1rem;
         }
 
         .day-name {
             font-family: 'Schoolbell', cursive;
-            font-size: 1.7rem;
+            font-size: 1.9rem;
             font-weight: normal;
             line-height: 1.5;
-            color: #fff;
+            color: var(--green);
             margin-bottom: 0.4rem;
         }
 
@@ -587,90 +565,155 @@
         }
 
         .day-address {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.7;
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.9;
             margin-bottom: 1.4rem;
         }
 
         .btn-map {
             display: inline-block;
             padding: 0.7rem 1.8rem;
-            border: 1px solid rgba(255,255,255,0.22);
+            border: 1px solid rgba(113,125,59,0.35);
             font-family: 'Schoolbell', cursive;
             font-size: 1.1rem;
             letter-spacing: 0.05em;
-            color: rgba(255,255,255,0.65);
+            color: var(--green);
             text-decoration: none;
             border-radius: 3px;
             transition: all 0.25s;
         }
         .btn-map:hover {
-            background: rgba(255,255,255,0.1);
+            background: var(--green);
             color: #fff;
-            border-color: rgba(255,255,255,0.45);
+            border-color: var(--green);
         }
 
         .dresscode {
             margin-top: 5rem;
             padding-top: 4rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(113,125,59,0.15);
             text-align: center;
         }
 
         .dresscode-label {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.2rem;
-            letter-spacing: 0.08em;
-            color: var(--mint);
+            letter-spacing: 0.1em;
+            color: var(--green);
             margin-bottom: 0.9rem;
         }
 
         .dresscode-title {
             font-family: 'Turquoise Kimono', cursive;
             font-size: 3.4rem;
-            color: #fff;
+            color: var(--green);
             margin-bottom: 0.9rem;
         }
 
         .dresscode-note {
             font-family: 'Schoolbell', cursive;
             font-size: 1.3rem;
-            color: rgba(255,255,255,0.5);
+            color: var(--muted);
             max-width: 480px;
             margin: 0 auto;
-            line-height: 2.0;
+            line-height: 2.1;
         }
 
-        /* ── GALLERY ────────────────────────────────────────── */
+        /* ── GALLERY CAROUSEL ───────────────────────────────── */
         #galeria {
-            background-color: var(--bg);
+            background-color: var(--bg2);
+            background-image: url('assets/background listrado.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             padding: 7rem 0;
         }
 
-        .gallery-grid {
-            columns: 3;
-            column-gap: 10px;
+        .carousel-wrapper {
+            position: relative;
             margin-top: 3rem;
+            overflow: hidden;
         }
 
-        .g-item {
-            break-inside: avoid;
-            margin-bottom: 10px;
-            overflow: hidden;
-            border-radius: 3px;
+        .carousel-track {
+            display: flex;
+            transition: transform 0.45s cubic-bezier(.25,.46,.45,.94);
+            will-change: transform;
+        }
+
+        .car-slide {
+            flex: 0 0 calc(100% / 3);
+            padding: 5px;
             cursor: zoom-in;
         }
 
-        .g-item img {
+        .car-slide img {
             width: 100%;
-            height: auto;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
             display: block;
-            transition: transform 0.55s cubic-bezier(.25,.46,.45,.94), filter 0.3s;
+            transition: transform 0.4s ease, filter 0.3s;
         }
-        .g-item:hover img {
-            transform: scale(1.05);
+        .car-slide:hover img {
+            transform: scale(1.03);
             filter: brightness(1.06) saturate(1.1);
+        }
+
+        .car-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(248,242,233,0.92);
+            border: 1px solid rgba(113,125,59,0.2);
+            color: var(--green);
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 48px; height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 0;
+        }
+        .car-btn:hover {
+            background: var(--green);
+            color: #fff;
+        }
+        .car-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        .car-btn:disabled:hover {
+            background: rgba(248,242,233,0.92);
+            color: var(--green);
+        }
+        .car-prev { left: 0.5rem; }
+        .car-next { right: 0.5rem; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .c-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(113,125,59,0.25);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            border: none;
+            padding: 0;
+        }
+        .c-dot.active {
+            background: var(--green);
+            transform: scale(1.3);
         }
 
         /* Lightbox */
@@ -711,20 +754,20 @@
 
         /* ── INFORMAÇÕES ────────────────────────────────────── */
         #informacoes {
-            background-color: var(--bg2);
+            background-color: var(--bg);
             padding: 7rem 0;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.4rem;
             margin-top: 3rem;
         }
 
         .info-card {
-            background: var(--bg);
-            border: 1px solid rgba(113,125,59,.1);
+            background: var(--bg2);
+            border: 1px solid rgba(113,125,59,.12);
             border-radius: 6px;
             padding: 2.8rem 2rem;
             text-align: center;
@@ -740,15 +783,15 @@
         .info-title {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.4rem;
-            color: var(--dark);
-            letter-spacing: 0.04em;
-            margin-bottom: 0.7rem;
+            color: var(--green);
+            letter-spacing: 0.06em;
+            margin-bottom: 0.8rem;
         }
 
         .info-text {
             font-size: 1.15rem;
             color: var(--muted);
-            line-height: 1.9;
+            line-height: 2.0;
         }
 
         /* ── PRESENTES ──────────────────────────────────────── */
@@ -758,8 +801,7 @@
             text-align: center;
         }
 
-        #presentes .sec-eye   { color: var(--purple); }
-        #presentes .sec-title { color: var(--dark); }
+        #presentes .sec-title { color: var(--purple); }
         #presentes .sec-rule  { background: var(--purple); }
 
         .presentes-text {
@@ -768,18 +810,18 @@
             color: var(--text);
             max-width: 580px;
             margin: 2.5rem auto;
-            line-height: 2.1;
+            line-height: 2.2;
         }
 
         .btn-gift {
             display: inline-block;
             padding: 1.1rem 3.2rem;
-            background: var(--dark);
+            background: var(--green);
             color: #fff;
             text-decoration: none;
             font-family: 'Schoolbell', cursive;
             font-size: 1.15rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.07em;
             border-radius: 3px;
             transition: background 0.25s, transform 0.25s;
             margin-top: 0.5rem;
@@ -791,38 +833,40 @@
 
         /* ── FOOTER ─────────────────────────────────────────── */
         footer {
-            background: var(--dark);
-            color: rgba(255,255,255,.5);
+            background: var(--bg2);
+            color: var(--muted);
             text-align: center;
             padding: 4.5rem 2rem;
+            border-top: 1px solid rgba(113,125,59,0.15);
         }
 
         .footer-car {
             width: 110px;
             margin: 0 auto 1.5rem;
-            filter: brightness(0) invert(1);
-            opacity: 0.55;
+            filter: brightness(0) saturate(100%) invert(44%) sepia(30%) saturate(570%) hue-rotate(52deg) brightness(93%);
+            opacity: 0.6;
         }
 
         .footer-names {
             font-family: 'Turquoise Kimono', cursive;
             font-size: 3.5rem;
-            color: rgba(255,255,255,0.85);
+            font-weight: normal;
+            color: var(--green);
             margin-bottom: 0.5rem;
         }
 
         .footer-date {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 1.15rem;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.12em;
+            color: var(--muted);
             margin-bottom: 2rem;
         }
 
         .footer-note {
             font-family: 'Schoolbell', cursive;
             font-size: 1.15rem;
-            color: rgba(255,255,255,0.3);
+            color: var(--muted);
         }
 
         /* ── REVEAL ANIMATION ───────────────────────────────── */
@@ -855,8 +899,8 @@
         .mobile-menu a {
             font-family: 'Lazy Designer', Georgia, serif;
             font-size: 2.2rem;
-            letter-spacing: 0.05em;
-            color: var(--dark);
+            letter-spacing: 0.06em;
+            color: var(--green);
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -888,17 +932,36 @@
             .tl-item:nth-child(odd) .tl-void,
             .tl-item:nth-child(even) .tl-void { display: none; }
 
-            .gallery-grid { columns: 2; }
+            .car-slide { flex: 0 0 100%; }
+            .car-slide img { height: 240px; }
+
             .section { padding: 5rem 0; }
+            .container { padding: 0 1.5rem; }
             .cd-unit { padding: 0 0.9rem; }
 
             .splash-logo { width: min(280px, 80vw); }
+
+            .day-cards { padding: 0 0.5rem; }
+            .welcome-body,
+            .historia-prose,
+            .presentes-text { padding: 0 0.5rem; }
+
+            .sec-title { font-size: clamp(2.8rem, 10vw, 4rem); }
+            #grande-dia .sec-title { font-size: clamp(3rem, 11vw, 5rem); }
+
+            .hero-content { padding: 6rem 1rem 3rem; }
+            .portraits { flex-wrap: wrap; }
+
+            .nav-logo-img { height: 62px; }
+
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 480px) {
-            .gallery-grid { columns: 1; }
+            .car-slide img { height: 200px; }
             .hero-content { padding: 6rem 1rem 3rem; }
-            /* backgrounds são cores sólidas, sem padrão */
+            .container { padding: 0 1.2rem; }
+            .info-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -908,14 +971,16 @@
 <div id="splash">
     <div class="splash-pattern"></div>
     <button id="splash-btn" aria-label="Entrar no site">
-        <img src="assets/Logo/4.svg" alt="Priscilla &amp; Cássio" class="splash-logo">
-        <span class="splash-enter">entrar ↓</span>
+        <img src="assets/Logo/4.svg" alt="Pri &amp; Cássio" class="splash-logo">
+        <p class="splash-welcome">seja muito bem-vindo ao nosso site</p>
     </button>
 </div>
 
 <!-- ────────────────── NAV ────────────────── -->
 <nav id="nav">
-    <a href="#hero" class="nav-logo">P &amp; C</a>
+    <a href="#hero" class="nav-logo">
+        <img src="assets/Logo/4.svg" alt="Pri &amp; Cássio" class="nav-logo-img">
+    </a>
     <ul class="nav-links">
         <li><a href="#historia">Nossa História</a></li>
         <li><a href="#grande-dia">O Grande Dia</a></li>
@@ -928,7 +993,7 @@
     </button>
 </nav>
 
-<!-- Menu mobile — fora do nav para que position:fixed funcione independente do backdrop-filter -->
+<!-- Menu mobile -->
 <ul class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <li><a href="#historia"    class="mob-link">Nossa História</a></li>
     <li><a href="#grande-dia"  class="mob-link">O Grande Dia</a></li>
@@ -945,19 +1010,13 @@
 
     <div class="hero-content">
         <p class="hero-eyebrow">Uberlândia &middot; Minas Gerais</p>
-        <h1 class="hero-names">Priscilla <span class="hero-amp">&amp;</span> Cássio</h1>
-        <p class="hero-date">19 &nbsp;&middot;&nbsp; 12 &nbsp;&middot;&nbsp; 2026</p>
+        <h1 class="hero-names">Pri <span class="hero-amp">&amp;</span> Cássio</h1>
+        <p class="hero-date">19 &nbsp;♡&nbsp; 12 &nbsp;♡&nbsp; 2026</p>
 
-        <!-- flores como divisor acima dos retratos -->
-        <div class="hero-floral">
-            <img src="assets/flores.png" alt="">
-        </div>
-
-        <!-- retratos — sem .reveal para não criar stacking context que quebra mix-blend-mode -->
         <div class="portraits">
             <div class="portrait portrait-lg">
-                <img src="assets/avatar-pri.png" alt="Priscilla">
-                <p class="portrait-name">Priscilla</p>
+                <img src="assets/avatar-pri.png" alt="Pri">
+                <p class="portrait-name">Pri</p>
                 <p class="portrait-role">A Noiva</p>
             </div>
             <div class="portrait portrait-sm">
@@ -973,6 +1032,7 @@
         </div>
 
         <!-- countdown -->
+        <p class="countdown-intro">faltam para o grande dia</p>
         <div class="countdown" id="countdown">
             <div class="cd-unit">
                 <span class="cd-num" id="cd-d">—</span>
@@ -993,15 +1053,15 @@
         </div>
     </div>
 
-    <div class="scroll-cue"><div class="scroll-cue-line"></div></div>
+    <div class="scroll-cue">
+        <div class="scroll-cue-line"></div>
+        <span class="scroll-cue-arrow">↓</span>
+    </div>
 </section>
 
 <!-- ────────────────── WELCOME ────────────────── -->
 <section id="welcome">
     <div class="container">
-        <div class="divider-cherub">
-            <img src="assets/anjos.png" alt="">
-        </div>
         <p class="welcome-body reveal">
             Após de muitos anos de parceria, mudanças, desafios, conquistas
             e da nossa maior bênção, a pequena Maria Flora, chegou o momento de
@@ -1016,13 +1076,7 @@
 
 <!-- ────────────────── NOSSA HISTÓRIA ────────────────── -->
 <section id="historia" class="section">
-
-    <!-- floral como transição do welcome → história -->
     <div class="container" style="position:relative">
-        <div class="div-floral">
-            <img src="assets/flores.png" alt="">
-        </div>
-
         <div class="sec-header reveal">
             <span class="sec-eye">Como tudo começou</span>
             <h2 class="sec-title">Nossa História</h2>
@@ -1099,11 +1153,6 @@
                 <div class="tl-void"></div>
             </div>
         </div>
-
-        <!-- anjos como transição de história → grande dia -->
-        <div class="div-cherub" style="margin-top:4rem;">
-            <img src="assets/anjos.png" alt="">
-        </div>
     </div>
 </section>
 
@@ -1154,43 +1203,45 @@
 <!-- ────────────────── GALERIA ────────────────── -->
 <section id="galeria">
     <div class="container">
-        <div class="div-floral">
-            <img src="assets/flores.png" alt="">
-        </div>
-
         <div class="sec-header reveal">
             <span class="sec-eye">Nossas memórias</span>
             <h2 class="sec-title">Galeria</h2>
             <div class="sec-rule"></div>
         </div>
-        <div class="gallery-grid reveal">
-            <div class="g-item"><img src="assets/photos/LN-104.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7864.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-105.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7870.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-106.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-107.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7874.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-108.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-109.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7877.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-110.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7880.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-111.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-112.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7896.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-113.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-114.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7917.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-115.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-116.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_7922.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-117.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-118.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/_MG_6542.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-119.jpg" alt="" loading="lazy"></div>
-            <div class="g-item"><img src="assets/photos/LN-120.jpg" alt="" loading="lazy"></div>
+
+        <div class="carousel-wrapper reveal">
+            <button class="car-btn car-prev" id="carPrev" aria-label="Anterior">&#8249;</button>
+            <div class="carousel-track" id="carouselTrack">
+                <div class="car-slide"><img src="assets/photos/LN-104.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7864.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-105.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7870.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-106.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-107.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7874.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-108.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-109.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7877.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-110.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7880.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-111.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-112.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7896.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-113.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-114.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7917.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-115.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-116.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_7922.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-117.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-118.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/_MG_6542.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-119.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-120.jpg" alt="" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-next" id="carNext" aria-label="Próximo">&#8250;</button>
         </div>
+        <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
     <div id="lightbox">
@@ -1203,13 +1254,6 @@
 
 <!-- ────────────────── INFORMAÇÕES ────────────────── -->
 <section id="informacoes" class="section">
-    <!-- anjos acima das informações -->
-    <div class="container">
-        <div class="div-cherub">
-            <img src="assets/anjos.png" alt="">
-        </div>
-    </div>
-
     <div class="container">
         <div class="sec-header reveal">
             <span class="sec-eye">Tudo que você precisa saber</span>
@@ -1252,13 +1296,7 @@
 <!-- ────────────────── PRESENTES ────────────────── -->
 <section id="presentes">
     <div class="container">
-        <!-- flores acima dos presentes -->
-        <div class="div-floral">
-            <img src="assets/flores.png" alt="">
-        </div>
-
         <div class="sec-header reveal">
-            <span class="sec-eye">Com muito amor</span>
             <h2 class="sec-title">Lista de Presentes</h2>
             <div class="sec-rule"></div>
         </div>
@@ -1277,9 +1315,9 @@
 <!-- ────────────────── FOOTER ────────────────── -->
 <footer>
     <img src="assets/carro.png" alt="P + C" class="footer-car">
-    <p class="footer-names">Priscilla &amp; Cássio</p>
+    <p class="footer-names">Pri &amp; Cássio</p>
     <p class="footer-date">19 &middot; 12 &middot; 2026 &middot; Uberlândia, MG</p>
-    <p class="footer-note">Nos vemos no dia 19 ♡</p>
+    <p class="footer-note">feito com muito amor e carinho ♡</p>
 </footer>
 
 <script>
@@ -1304,7 +1342,7 @@
 
         if (diff <= 0) {
             document.getElementById('countdown').innerHTML =
-                '<p style="font-family:\'Turquoise Kimono\',cursive;font-size:2.2rem;color:var(--dark)">É hoje! ♡</p>';
+                '<p style="font-family:\'Turquoise Kimono\',cursive;font-size:2.2rem;color:var(--green)">É hoje! ♡</p>';
             return;
         }
 
@@ -1361,8 +1399,76 @@
         document.getElementById('heroBg').classList.add('loaded');
     });
 
+    /* ── Carousel ── */
+    const track      = document.getElementById('carouselTrack');
+    const slides     = [...track.children];
+    const dotsEl     = document.getElementById('carouselDots');
+    const carPrev    = document.getElementById('carPrev');
+    const carNext    = document.getElementById('carNext');
+    let perView      = window.innerWidth > 768 ? 3 : 1;
+    let carCurrent   = 0;
+    const total      = slides.length;
+
+    function buildDots() {
+        dotsEl.innerHTML = '';
+        const pageCount = Math.ceil(total / perView);
+        for (let i = 0; i < pageCount; i++) {
+            const d = document.createElement('button');
+            d.className = 'c-dot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Página ' + (i + 1));
+            d.addEventListener('click', () => goTo(i * perView));
+            dotsEl.appendChild(d);
+        }
+    }
+
+    function updateDots() {
+        const activePage = Math.floor(carCurrent / perView);
+        dotsEl.querySelectorAll('.c-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === activePage);
+        });
+    }
+
+    function updateButtons() {
+        carPrev.disabled = carCurrent === 0;
+        carNext.disabled = carCurrent >= total - perView;
+    }
+
+    function goTo(idx) {
+        carCurrent = Math.max(0, Math.min(idx, total - perView));
+        const pct = (100 / perView) * carCurrent;
+        track.style.transform = `translateX(-${pct}%)`;
+        updateDots();
+        updateButtons();
+    }
+
+    carPrev.addEventListener('click', () => goTo(carCurrent - perView));
+    carNext.addEventListener('click', () => goTo(carCurrent + perView));
+
+    /* Touch/swipe */
+    let carTouchX = 0;
+    track.addEventListener('touchstart', e => { carTouchX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - carTouchX;
+        if (dx > 50)  goTo(carCurrent - perView);
+        if (dx < -50) goTo(carCurrent + perView);
+    });
+
+    /* Resize */
+    window.addEventListener('resize', () => {
+        const newPerView = window.innerWidth > 768 ? 3 : 1;
+        if (newPerView !== perView) {
+            perView = newPerView;
+            carCurrent = 0;
+            buildDots();
+            goTo(0);
+        }
+    });
+
+    buildDots();
+    updateButtons();
+
     /* ── Lightbox ── */
-    const imgs   = [...document.querySelectorAll('.g-item img')];
+    const imgs   = [...document.querySelectorAll('.car-slide img')];
     const lb     = document.getElementById('lightbox');
     const lbImg  = document.getElementById('lb-img');
     let   lbIdx  = 0;
@@ -1395,7 +1501,7 @@
     });
 
     let touchX = 0;
-    lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+    lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend',   e => {
         const dx = e.changedTouches[0].clientX - touchX;
         if (Math.abs(dx) > 50) lbNav(dx < 0 ? 1 : -1);
