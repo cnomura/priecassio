@@ -8,36 +8,103 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
     <style>
+        @font-face {
+            font-family: 'Turquoise Kimono';
+            src: url('assets/fonts/Turquoise Kimono/Turquoise Kimono.woff') format('woff'),
+                 url('assets/fonts/Turquoise Kimono/Turquoise Kimono.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lazy Designer';
+            src: url('assets/fonts/LazyDesigner/LazyDesigner.woff2') format('woff2'),
+                 url('assets/fonts/LazyDesigner/LazyDesigner.woff') format('woff'),
+                 url('assets/fonts/LazyDesigner/LazyDesigner.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         /* ── RESET & TOKENS ─────────────────────────────────── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --green:    #4E7B3B;
-            --purple:   #7A3B76;
-            --dark:     #303B2B;
-            --lavender: #CFA9CD;
-            --mint:     #DAFACD;
-            --bg:       #FAF8F2;
-            --bg2:      #F2EFE5;
-            --text:     #2C2A25;
-            --muted:    #5C5244;
+            --green:    #717D3B;
+            --purple:   #D93D76;
+            --dark:     #2A1F1A;
+            --lavender: #F26E50;
+            --mint:     #F2D027;
+            --bg:       #F8F2E9;
+            --bg2:      #EEE5D8;
+            --text:     #2A1F1A;
+            --muted:    #7A5E50;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Schoolbell', cursive;
             background: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            line-height: 1.7;
+            line-height: 2.0;
         }
 
         img { max-width: 100%; display: block; }
         a { color: inherit; }
+
+        /* ── SPLASH ─────────────────────────────────────────── */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            transition: opacity 0.9s ease, visibility 0.9s ease;
+        }
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .splash-pattern { display: none; }
+        #splash-btn {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+            padding: 2rem;
+            animation: splashBreath 3.5s ease-in-out infinite;
+        }
+        .splash-logo {
+            width: min(340px, 72vw);
+            height: auto;
+            filter: drop-shadow(0 8px 28px rgba(217,61,118,0.18));
+        }
+        @keyframes splashBreath {
+            0%, 100% { transform: scale(1); }
+            50%       { transform: scale(1.025); }
+        }
+        .splash-enter {
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.25rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            animation: splashHint 2.2s ease-in-out infinite;
+        }
+        @keyframes splashHint {
+            0%, 100% { opacity: 0.35; transform: translateY(0); }
+            50%       { opacity: 0.8;  transform: translateY(5px); }
+        }
 
         /* ── NAVIGATION ─────────────────────────────────────── */
         #nav {
@@ -52,14 +119,14 @@
         }
 
         #nav.scrolled {
-            background: rgba(250, 248, 242, 0.97);
-            box-shadow: 0 1px 24px rgba(48,59,43,.08);
+            background: rgba(248,242,233,0.97);
+            box-shadow: 0 1px 24px rgba(42,31,26,.08);
             backdrop-filter: blur(10px);
             padding: 0.7rem 2.5rem;
         }
 
         .nav-logo {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Turquoise Kimono', cursive;
             font-size: 2rem;
             color: var(--dark);
             text-decoration: none;
@@ -74,15 +141,14 @@
         }
 
         .nav-links a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.06em;
             color: var(--dark);
             text-decoration: none;
             transition: color 0.2s;
         }
-        .nav-links a:hover { color: var(--green); }
+        .nav-links a:hover { color: var(--purple); }
 
         /* ── HAMBURGER ──────────────────────────────────────── */
         .nav-toggle {
@@ -95,7 +161,7 @@
             cursor: pointer;
             padding: 6px;
             position: relative;
-            z-index: 6;           /* above overlay within nav stacking ctx */
+            z-index: 6;
             width: 36px; height: 36px;
         }
         .nav-toggle span {
@@ -105,7 +171,6 @@
             transition: transform 0.3s, opacity 0.2s;
             transform-origin: center;
         }
-        /* hamburger → X */
         .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -123,7 +188,6 @@
             background-color: var(--bg);
         }
 
-        /* photo as atmospheric texture */
         .hero-bg {
             position: absolute;
             inset: 0;
@@ -134,23 +198,14 @@
         }
         .hero-bg.loaded { transform: scale(1); }
 
-        /* cream veil over the photo */
         .hero-veil {
             position: absolute;
             inset: 0;
-            background: rgba(250, 248, 242, 0.87);
+            background: rgba(248,242,233,0.87);
         }
 
-        /* pattern over everything */
-        .hero-pattern {
-            position: absolute;
-            inset: 0;
-            background: url("assets/background.png") center / 820px;
-            opacity: 0.12;
-            mix-blend-mode: multiply;
-        }
+        .hero-pattern { display: none; }
 
-        /* all content sits above the layers — no z-index so mix-blend-mode works across layers */
         .hero-content {
             position: relative;
             color: var(--dark);
@@ -166,40 +221,36 @@
         }
 
         .hero-eyebrow {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.88rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
             color: var(--green);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
         }
 
         .hero-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.5rem, 10vw, 7rem);
-            line-height: 1.05;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: clamp(4rem, 11vw, 8rem);
+            line-height: 1.15;
             color: var(--dark);
         }
 
         .hero-amp {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-style: italic;
-            font-weight: 300;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: normal;
             color: var(--purple);
-            margin: 0 0.3rem;
+            margin: 0 0.4rem;
         }
 
         .hero-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(0.9rem, 2vw, 1.15rem);
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+            letter-spacing: 0.25em;
             color: var(--muted);
-            margin-top: 0.5rem;
+            margin-top: 0.7rem;
         }
 
-        /* floral divider in hero */
         .hero-floral {
             width: 100%;
             overflow: hidden;
@@ -212,14 +263,13 @@
             opacity: 0.85;
         }
 
-        /* portraits inside hero */
         .portraits {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 3rem;
+            gap: 4.5rem;
             flex-wrap: nowrap;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .portrait { text-align: center; }
@@ -234,19 +284,18 @@
         .portrait-sm img { width: 120px; }
 
         .portrait-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.6rem;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.9rem;
             color: var(--dark);
-            margin-top: 0.8rem;
+            margin-top: 1rem;
         }
 
         .portrait-role {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.88rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
             color: var(--muted);
-            margin-top: 0.1rem;
+            margin-top: 0.25rem;
         }
 
         /* ── COUNTDOWN ──────────────────────────────────────── */
@@ -257,27 +306,27 @@
 
         .cd-unit {
             text-align: center;
-            padding: 0 1.2rem;
-            border-right: 1px solid rgba(48,59,43,0.15);
+            padding: 0 1.8rem;
+            border-right: 1px solid rgba(42,31,26,0.15);
         }
         .cd-unit:last-child { border-right: none; }
 
         .cd-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4.5vw, 2.8rem);
-            font-weight: 300;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+            font-weight: normal;
             line-height: 1;
             color: var(--dark);
             display: block;
         }
 
         .cd-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
             color: var(--muted);
             display: block;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
         }
 
         .scroll-cue {
@@ -304,32 +353,31 @@
         }
 
         /* ── SHARED LAYOUT ──────────────────────────────────── */
-        .section { padding: 7rem 0; }
+        .section { padding: 9rem 0; }
 
         .container {
             max-width: 1080px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
 
         .sec-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .sec-eye {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
             color: var(--green);
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .sec-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: clamp(3rem, 7vw, 5rem);
             color: var(--dark);
             line-height: 1.1;
         }
@@ -340,8 +388,7 @@
             margin: 1.2rem auto 0;
         }
 
-        /* ── SECTION DIVIDERS (repeated between sections) ───── */
-        /* margin-left instead of transform — avoids stacking context that breaks mix-blend-mode */
+        /* ── SECTION DIVIDERS ────────────────────────────────── */
         .div-cherub,
         .div-floral {
             width: 100vw;
@@ -359,20 +406,15 @@
             opacity: 0.85;
         }
 
-        /* cherub divider needs a bit of height padding */
         .div-cherub { padding: 1rem 0; }
         .div-floral { padding: 0.5rem 0; }
 
         /* ── WELCOME ────────────────────────────────────────── */
         #welcome {
             background-color: var(--bg);
-            background-image: url("assets/background.png");
-            background-size: 820px;
-            background-repeat: repeat;
-            padding: 4rem 0 5rem;
+            padding: 5rem 0 6rem;
         }
 
-        /* cherubs break to full viewport width */
         .divider-cherub {
             width: 100vw;
             position: relative;
@@ -390,42 +432,38 @@
         }
 
         .welcome-body {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.15rem, 2.4vw, 1.35rem);
-            font-style: italic;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(1.35rem, 2.8vw, 1.65rem);
             color: var(--text);
             text-align: center;
-            max-width: 700px;
+            max-width: 740px;
             margin: 0 auto;
-            line-height: 2;
+            line-height: 2.1;
         }
 
         .welcome-sig {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.4rem;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: 3rem;
             color: var(--green);
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
         }
 
         /* ── NOSSA HISTÓRIA ─────────────────────────────────── */
         #historia {
             background-color: var(--bg2);
-            background-image: url("assets/background.png");
-            background-size: 820px;
-            background-repeat: repeat;
             position: relative;
             overflow: hidden;
         }
 
         .historia-prose {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(1.3rem, 2.2vw, 1.55rem);
             color: var(--text);
             text-align: center;
-            max-width: 660px;
+            max-width: 700px;
             margin: 0 auto;
-            line-height: 2;
+            line-height: 2.1;
         }
 
         .historia-prose p + p { margin-top: 1.4rem; }
@@ -476,18 +514,18 @@
         }
 
         .tl-year {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.6rem;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: 2rem;
             color: var(--purple);
             line-height: 1.1;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.4rem;
         }
 
         .tl-desc {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.2rem;
             color: var(--muted);
-            line-height: 1.6;
+            line-height: 1.9;
         }
 
         /* ── O GRANDE DIA ───────────────────────────────────── */
@@ -499,14 +537,7 @@
             overflow: hidden;
         }
 
-        #grande-dia::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("assets/background.png") center / 820px;
-            opacity: 0.04;
-            pointer-events: none;
-        }
+        #grande-dia::before { display: none; }
 
         #grande-dia .sec-eye    { color: var(--mint); }
         #grande-dia .sec-title  { color: #fff; }
@@ -521,7 +552,7 @@
         .day-card {
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 6px;
-            padding: 3rem 2rem;
+            padding: 3.5rem 2.5rem;
             text-align: center;
             background: rgba(255,255,255,0.04);
             transition: background 0.3s, border-color 0.3s;
@@ -532,28 +563,27 @@
         }
 
         .day-type {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
             color: var(--mint);
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .day-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 1.3;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.7rem;
+            font-weight: normal;
+            line-height: 1.5;
             color: #fff;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
         .day-time {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.4rem;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: 3.4rem;
             color: var(--lavender);
-            margin: 0.7rem 0;
+            margin: 1rem 0;
         }
 
         .day-address {
@@ -565,12 +595,11 @@
 
         .btn-map {
             display: inline-block;
-            padding: 0.6rem 1.5rem;
+            padding: 0.7rem 1.8rem;
             border: 1px solid rgba(255,255,255,0.22);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
             color: rgba(255,255,255,0.65);
             text-decoration: none;
             border-radius: 3px;
@@ -590,36 +619,32 @@
         }
 
         .dresscode-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
             color: var(--mint);
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.9rem;
         }
 
         .dresscode-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: 3.4rem;
             color: #fff;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.9rem;
         }
 
         .dresscode-note {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-style: italic;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.3rem;
             color: rgba(255,255,255,0.5);
-            max-width: 420px;
+            max-width: 480px;
             margin: 0 auto;
+            line-height: 2.0;
         }
 
         /* ── GALLERY ────────────────────────────────────────── */
         #galeria {
             background-color: var(--bg);
-            background-image: url("assets/background.png");
-            background-size: 820px;
-            background-repeat: repeat;
             padding: 7rem 0;
         }
 
@@ -687,9 +712,6 @@
         /* ── INFORMAÇÕES ────────────────────────────────────── */
         #informacoes {
             background-color: var(--bg2);
-            background-image: url("assets/background.png");
-            background-size: 820px;
-            background-repeat: repeat;
             padding: 7rem 0;
         }
 
@@ -702,40 +724,36 @@
 
         .info-card {
             background: var(--bg);
-            border: 1px solid rgba(78,123,59,.1);
+            border: 1px solid rgba(113,125,59,.1);
             border-radius: 6px;
-            padding: 2rem 1.5rem;
+            padding: 2.8rem 2rem;
             text-align: center;
             transition: border-color 0.3s, transform 0.3s;
         }
         .info-card:hover {
-            border-color: rgba(78,123,59,.3);
+            border-color: rgba(113,125,59,.3);
             transform: translateY(-3px);
         }
 
-        .info-icon { font-size: 1.9rem; margin-bottom: 0.9rem; }
+        .info-icon { font-size: 2.2rem; margin-bottom: 1.1rem; }
 
         .info-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.4rem;
             color: var(--dark);
             letter-spacing: 0.04em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
         }
 
         .info-text {
-            font-size: 1rem;
+            font-size: 1.15rem;
             color: var(--muted);
-            line-height: 1.75;
+            line-height: 1.9;
         }
 
         /* ── PRESENTES ──────────────────────────────────────── */
         #presentes {
-            background-color: #EDE5EF;
-            background-image: url("assets/background.png");
-            background-size: 820px;
-            background-repeat: repeat;
+            background-color: #F7E5ED;
             padding: 7rem 0;
             text-align: center;
         }
@@ -745,24 +763,23 @@
         #presentes .sec-rule  { background: var(--purple); }
 
         .presentes-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(1.3rem, 2.3vw, 1.55rem);
             color: var(--text);
-            max-width: 520px;
-            margin: 2rem auto;
-            line-height: 1.9;
+            max-width: 580px;
+            margin: 2.5rem auto;
+            line-height: 2.1;
         }
 
         .btn-gift {
             display: inline-block;
-            padding: 1rem 2.8rem;
+            padding: 1.1rem 3.2rem;
             background: var(--dark);
             color: #fff;
             text-decoration: none;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.15rem;
+            letter-spacing: 0.05em;
             border-radius: 3px;
             transition: background 0.25s, transform 0.25s;
             margin-top: 0.5rem;
@@ -788,25 +805,23 @@
         }
 
         .footer-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: 3.5rem;
             color: rgba(255,255,255,0.85);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .footer-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.38em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.1em;
             color: rgba(255,255,255,0.3);
             margin-bottom: 2rem;
         }
 
         .footer-note {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            font-style: italic;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.15rem;
             color: rgba(255,255,255,0.3);
         }
 
@@ -821,13 +836,13 @@
         .reveal.delay-3 { transition-delay: 0.3s; }
         .reveal.in { opacity: 1; transform: none; }
 
-        /* ── MOBILE MENU OVERLAY (fora do nav para evitar backdrop-filter containment) */
+        /* ── MOBILE MENU OVERLAY ─────────────────────────────── */
         .mobile-menu {
             display: none;
             position: fixed;
             inset: 0;
             background: var(--bg);
-            z-index: 150;          /* abaixo do nav (200), acima do conteúdo */
+            z-index: 150;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -838,29 +853,26 @@
         }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.9rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 2.2rem;
+            letter-spacing: 0.05em;
             color: var(--dark);
             text-decoration: none;
             transition: color 0.2s;
         }
-        .mobile-menu a:hover { color: var(--green); }
+        .mobile-menu a:hover { color: var(--purple); }
 
         /* ── RESPONSIVE ─────────────────────────────────────── */
         @media (max-width: 768px) {
-            .nav-links  { display: none; }   /* links desktop somem no mobile */
+            .nav-links  { display: none; }
             .nav-toggle { display: flex; }
 
-            /* hero portraits on mobile */
             .portraits { gap: 1.5rem; }
             .portrait-lg img { width: 120px; }
             .portrait-sm img { width: 90px; }
             .portrait-name { font-size: 1.3rem; }
-            .portrait-role { font-size: 0.78rem; }
+            .portrait-role { font-size: 0.85rem; }
 
-            /* timeline */
             .timeline::before { left: 12px; transform: none; }
             .tl-item {
                 grid-template-columns: 28px 1fr;
@@ -879,21 +891,31 @@
             .gallery-grid { columns: 2; }
             .section { padding: 5rem 0; }
             .cd-unit { padding: 0 0.9rem; }
+
+            .splash-logo { width: min(280px, 80vw); }
         }
 
         @media (max-width: 480px) {
             .gallery-grid { columns: 1; }
             .hero-content { padding: 6rem 1rem 3rem; }
-            #welcome, #historia, #galeria, #informacoes, #presentes { background-size: 420px; }
-            .hero-pattern { background-size: 420px; }
+            /* backgrounds são cores sólidas, sem padrão */
         }
     </style>
 </head>
 <body>
 
+<!-- ────────────────── SPLASH ────────────────── -->
+<div id="splash">
+    <div class="splash-pattern"></div>
+    <button id="splash-btn" aria-label="Entrar no site">
+        <img src="assets/Logo/4.svg" alt="Priscilla &amp; Cássio" class="splash-logo">
+        <span class="splash-enter">entrar ↓</span>
+    </button>
+</div>
+
 <!-- ────────────────── NAV ────────────────── -->
 <nav id="nav">
-    <a href="#hero" class="nav-logo">P & C</a>
+    <a href="#hero" class="nav-logo">P &amp; C</a>
     <ul class="nav-links">
         <li><a href="#historia">Nossa História</a></li>
         <li><a href="#grande-dia">O Grande Dia</a></li>
@@ -981,7 +1003,7 @@
             <img src="assets/anjos.png" alt="">
         </div>
         <p class="welcome-body reveal">
-            Depois de muitos anos de parceria, mudanças, desafios, conquistas
+            Após de muitos anos de parceria, mudanças, desafios, conquistas
             e da nossa maior bênção, a pequena Maria Flora, chegou o momento de
             celebrarmos esse capítulo tão especial ao lado das pessoas que amamos.<br><br>
             Criamos este espaço para compartilhar com vocês todos os detalhes do
@@ -1261,6 +1283,18 @@
 </footer>
 
 <script>
+    /* ── Splash ── */
+    const splash    = document.getElementById('splash');
+    const splashBtn = document.getElementById('splash-btn');
+
+    function closeSplash() {
+        splash.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    splashBtn.addEventListener('click', closeSplash);
+    document.body.style.overflow = 'hidden';
+
     /* ── Countdown ── */
     const wedding = new Date('2026-12-19T11:00:00-03:00').getTime();
 
@@ -1270,7 +1304,7 @@
 
         if (diff <= 0) {
             document.getElementById('countdown').innerHTML =
-                '<p style="font-family:\'Great Vibes\',cursive;font-size:2.2rem;color:var(--dark)">É hoje! ♡</p>';
+                '<p style="font-family:\'Turquoise Kimono\',cursive;font-size:2.2rem;color:var(--dark)">É hoje! ♡</p>';
             return;
         }
 
