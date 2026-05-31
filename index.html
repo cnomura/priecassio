@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Casamento de Priscilla e Cássio — 19 de Dezembro de 2026, Uberlândia - MG">
-    <title>Pri & Cássio — 19.12.2026</title>
+    <meta name="description" content="Casamento de Priscilla e Cássio, 19 de Dezembro de 2026, Uberlândia - MG">
+    <title>Pri & Cássio, 19.12.2026</title>
 
     <link rel="icon" href="assets/Logo/4.svg" type="image/svg+xml">
 
@@ -67,10 +67,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow-y: auto;
             background-color: var(--bg);
-            background-image: url('assets/background listrado.png');
-            background-size: cover;
-            background-position: center;
+            background-image: url('assets/background.png');
+            background-size: 820px;
+            background-repeat: repeat;
             transition: opacity 0.9s ease, visibility 0.9s ease;
         }
         #splash.hidden {
@@ -87,14 +88,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.8rem;
-            padding: 2rem;
+            gap: 1.2rem;
+            padding: 2rem 2rem 3rem;
             animation: splashBreath 3.5s ease-in-out infinite;
         }
         .splash-logo {
-            width: min(480px, 82vw);
+            width: min(420px, 78vw);
             height: auto;
-            filter: brightness(0) saturate(100%) invert(44%) sepia(30%) saturate(570%) hue-rotate(52deg) brightness(93%);
         }
         @keyframes splashBreath {
             0%, 100% { transform: scale(1); }
@@ -140,7 +140,6 @@
             height: 80px;
             width: auto;
             display: block;
-            filter: brightness(0) saturate(100%) invert(44%) sepia(30%) saturate(570%) hue-rotate(52deg) brightness(93%);
         }
 
         .nav-links {
@@ -197,22 +196,6 @@
             background-color: var(--bg);
         }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url("assets/photos/LN-110.jpg") center 30% / cover no-repeat;
-            filter: brightness(0.18) saturate(0.45);
-            transform: scale(1.03);
-            transition: transform 8s ease-out;
-        }
-        .hero-bg.loaded { transform: scale(1); }
-
-        .hero-veil {
-            position: absolute;
-            inset: 0;
-            background: rgba(248,242,233,0.87);
-        }
-
         .hero-pattern { display: none; }
 
         .hero-content {
@@ -244,6 +227,8 @@
             line-height: 2.15;
             color: var(--green);
         }
+
+        .amp { color: var(--purple); }
 
         .hero-amp {
             font-family: 'Turquoise Kimono', cursive;
@@ -365,6 +350,33 @@
         @keyframes scrollBounce {
             0%, 100% { transform: translateY(0); opacity: 0.4; }
             50%       { transform: translateY(6px); opacity: 0.8; }
+        }
+
+        .countdown-outro {
+            font-family: 'Turquoise Kimono', cursive;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            color: var(--green);
+            margin-top: 1.2rem;
+            letter-spacing: 0.06em;
+        }
+
+        .splash-cta {
+            display: inline-block;
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--green);
+            border: 1px solid rgba(113,125,59,0.4);
+            border-radius: 3px;
+            padding: 0.55rem 2rem;
+            margin-top: 0.8rem;
+            text-transform: lowercase;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+        #splash-btn:hover .splash-cta {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
         }
 
         /* ── SHARED LAYOUT ──────────────────────────────────── */
@@ -971,17 +983,19 @@
 <div id="splash">
     <div class="splash-pattern"></div>
     <button id="splash-btn" aria-label="Entrar no site">
-        <img src="assets/Logo/4.svg" alt="Pri &amp; Cássio" class="splash-logo">
-        <p class="splash-welcome">seja muito bem-vindo ao nosso site</p>
+        <img src="assets/Logo/logo.png" alt="Pri &amp; Cássio" class="splash-logo">
+        <p class="splash-welcome">seja muito bem-vindo!</p>
+        <span class="splash-cta">abrir o convite</span>
     </button>
 </div>
 
 <!-- ────────────────── NAV ────────────────── -->
 <nav id="nav">
     <a href="#hero" class="nav-logo">
-        <img src="assets/Logo/4.svg" alt="Pri &amp; Cássio" class="nav-logo-img">
+        <img src="assets/Logo/logo.png" alt="Pri &amp; Cássio" class="nav-logo-img">
     </a>
     <ul class="nav-links">
+        <li><a href="#welcome">Bem-vindo</a></li>
         <li><a href="#historia">Nossa História</a></li>
         <li><a href="#grande-dia">O Grande Dia</a></li>
         <li><a href="#galeria">Galeria</a></li>
@@ -995,6 +1009,7 @@
 
 <!-- Menu mobile -->
 <ul class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <li><a href="#welcome"     class="mob-link">Bem-vindo</a></li>
     <li><a href="#historia"    class="mob-link">Nossa História</a></li>
     <li><a href="#grande-dia"  class="mob-link">O Grande Dia</a></li>
     <li><a href="#galeria"     class="mob-link">Galeria</a></li>
@@ -1003,11 +1018,7 @@
 </ul>
 
 <!-- ────────────────── HERO ────────────────── -->
-<section id="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-veil"></div>
-    <div class="hero-pattern"></div>
-
+<section id="hero" class="section">
     <div class="hero-content">
         <p class="hero-eyebrow">Uberlândia &middot; Minas Gerais</p>
         <h1 class="hero-names">Pri <span class="hero-amp">&amp;</span> Cássio</h1>
@@ -1032,7 +1043,7 @@
         </div>
 
         <!-- countdown -->
-        <p class="countdown-intro">faltam para o grande dia</p>
+        <p class="countdown-intro">faltam</p>
         <div class="countdown" id="countdown">
             <div class="cd-unit">
                 <span class="cd-num" id="cd-d">—</span>
@@ -1051,26 +1062,29 @@
                 <span class="cd-label">segundos</span>
             </div>
         </div>
-    </div>
-
-    <div class="scroll-cue">
-        <div class="scroll-cue-line"></div>
-        <span class="scroll-cue-arrow">↓</span>
+        <p class="countdown-outro">para o grande dia!</p>
     </div>
 </section>
 
 <!-- ────────────────── WELCOME ────────────────── -->
 <section id="welcome">
     <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-eye">uma mensagem nossa para vocês</span>
+            <h2 class="sec-title">Bem-vindos!</h2>
+            <div class="sec-rule"></div>
+        </div>
         <p class="welcome-body reveal">
-            Após de muitos anos de parceria, mudanças, desafios, conquistas
-            e da nossa maior bênção, a pequena Maria Flora, chegou o momento de
-            celebrarmos esse capítulo tão especial ao lado das pessoas que amamos.<br><br>
-            Criamos este espaço para compartilhar com vocês todos os detalhes do
-            nosso grande dia. Estamos muito felizes em viver esse momento cercados
-            de amigos e familiares tão importantes na nossa história.
+            Estamos muito felizes em anunciar que vamos nos casar! E queremos
+            partilhar esse momento tão gostoso com todos aqueles que nos ajudaram
+            a escrever essa linda história.<br><br>
+            Criamos esse site-convite para explicar um pouquinho do que pretendemos
+            fazer até o grande dia. Queremos que seja uma linda e animada festa,
+            cercada de amor e com a benção de Deus, um dia inesquecível para
+            todos nós.<br><br>
+            Com muito amor,
         </p>
-        <p class="welcome-sig reveal delay-1">Pri &amp; Cássio</p>
+        <p class="welcome-sig reveal delay-1">Pri <span class="amp">&amp;</span> Cássio ♡</p>
     </div>
 </section>
 
@@ -1085,29 +1099,43 @@
 
         <div class="historia-prose reveal">
             <p>
-                Nossa história começou em 2016, de uma forma simples e inesperada —
-                uma conversinha aqui e ali online. Aos poucos, aquilo que era apenas
-                passa-tempo se transformou em amor, parceria e em uma conexão que
-                só cresceu ao longo dos anos.
+                Nossa história começou em 2016, por conta de um match num app
+                (bem clichê, nós sabemos!) e, de forma bem despretensiosa, a
+                conversa evoluiu naturalmente até saltarmos pro WhatsApp. De tal
+                forma que criamos a necessidade de nos vermos, mas nessa época
+                a Pri estava em Ribeirão Preto cuidando da vó Maria, e eu em
+                Uberlândia, já trabalhando e tentando arranjar um jeito de
+                conhecer minha esposa o mais breve possível!
             </p>
             <p>
-                Vivemos muitas fases juntos, construímos sonhos, atravessamos mudanças
-                importantes e, há alguns anos, começamos uma nova vida em outro país.
-                Em cada passo dessa caminhada, estivemos lado a lado —
-                rindo, chorando, vivendo essa loucura que se chama amor.
+                E o nosso início não foi como nos contos de fadas. Apesar de
+                gostarmos de muita coisa, havia também muita coisa que nos
+                afastava. Por isso nos afastamos, mas, de forma bem
+                despretensiosa, a Pri acabou ficando com o meu HD. Num belo dia
+                chegou uma mensagem dizendo que ela queria devolvê-lo. Nos
+                encontramos, fomos mais honestos um com o outro e, bom, desde
+                então não desgrudamos mais.
             </p>
             <p>
-                E sem avisos então, chegou a nossa maior alegria: Maria Flora,
-                a nossa menina moleca, que trouxe ainda mais amor e significado
-                para a nossa vida e família. A nossa força para sermos,
-                a cada dia, melhores.
+                Foi uma trajetória cheia de mudanças (literais!), desafios,
+                descobertas e muitas alegrias juntos. Conseguimos viajar e
+                conhecer lugares incríveis com pessoas que amamos muito.
+                Pudemos estender nossas famílias uma à outra, de tal forma
+                que hoje me sinto em casa na casa dos meus sogros.
             </p>
             <p>
-                Agora, voltamos para Uberlândia, a cidade onde nos conhecemos
-                e onde tudo começou, para celebrar nossa união com as pessoas
-                mais importantes de nossas vidas. Esse casamento representa muito
-                mais do que uma cerimônia: é a concretização de tudo o que
-                vivemos até aqui.
+                Em 2023 nossa trajetória nos trouxe a Portugal, um país
+                incrível, de pessoas de bom coração. Lá realizamos o sonho dos
+                pais da Pri de viajarem pra fora, recebemos a vó duas vezes e
+                a minha mãe também. No meio de tanta coisa boa, veio a nossa
+                maior surpresa: a doce Maria Flora. Ter a sensação de ligar
+                para familiares e contar a boa nova é tão satisfatório! Quando
+                ela nasceu, foi um dos dias mais felizes de nossas vidas —
+                não sabemos descrever em palavras o quão somos abençoados.
+            </p>
+            <p>
+                Depois de tantos desafios e conquistas, acreditamos que
+                brindar esses 10 anos juntos merece uma festa à altura!
             </p>
         </div>
 
@@ -1115,7 +1143,7 @@
             <div class="tl-item">
                 <div class="tl-body">
                     <p class="tl-year">2016</p>
-                    <p class="tl-desc">Uma mensagem perdida no meio de tantas outras — e foi por ali que tudo começou</p>
+                    <p class="tl-desc">Um match no app, uma conversa que não parava e um WhatsApp que mudou tudo</p>
                 </div>
                 <div class="tl-dot"></div>
                 <div class="tl-void"></div>
@@ -1124,14 +1152,14 @@
                 <div class="tl-void"></div>
                 <div class="tl-dot"></div>
                 <div class="tl-body">
-                    <p class="tl-year">Os anos que se seguiram</p>
-                    <p class="tl-desc">Cada mudança de fase, cada coisa nova que apareceu na vida — a gente foi junto</p>
+                    <p class="tl-year">O HD que ficou</p>
+                    <p class="tl-desc">Um afastamento, um HD guardado e uma mensagem que trouxe tudo de volta, mais honestos e mais juntos</p>
                 </div>
             </div>
             <div class="tl-item">
                 <div class="tl-body">
-                    <p class="tl-year">Outro país</p>
-                    <p class="tl-desc">Desembarcamos com as malas, montamos um lar e chamamos de casa</p>
+                    <p class="tl-year">Viagens e conquistas</p>
+                    <p class="tl-desc">Lugares incríveis, famílias que se tornaram uma só e memórias que guardaremos pra sempre</p>
                 </div>
                 <div class="tl-dot"></div>
                 <div class="tl-void"></div>
@@ -1139,18 +1167,26 @@
             <div class="tl-item">
                 <div class="tl-void"></div>
                 <div class="tl-dot"></div>
+                <div class="tl-body">
+                    <p class="tl-year">2023</p>
+                    <p class="tl-desc">Portugal, um país incrível, pessoas de bom coração e mais um sonho realizado juntos</p>
+                </div>
+            </div>
+            <div class="tl-item">
                 <div class="tl-body">
                     <p class="tl-year">Maria Flora</p>
-                    <p class="tl-desc">Chegou do nada e ensinou a gente o que é amar de um jeito que a gente nem sabia que existia</p>
+                    <p class="tl-desc">A nossa maior e mais amada surpresa, ela chegou e nos ensinou o que é amor de verdade</p>
                 </div>
+                <div class="tl-dot"></div>
+                <div class="tl-void"></div>
             </div>
             <div class="tl-item">
+                <div class="tl-void"></div>
+                <div class="tl-dot special"></div>
                 <div class="tl-body">
                     <p class="tl-year">19.12.2026</p>
-                    <p class="tl-desc">O sim que a gente já sabia que ia chegar — agora de volta onde tudo começou</p>
+                    <p class="tl-desc">10 anos juntos, de volta a Uberlândia para festejar com todos que amamos!</p>
                 </div>
-                <div class="tl-dot special"></div>
-                <div class="tl-void"></div>
             </div>
         </div>
     </div>
@@ -1194,7 +1230,7 @@
             <p class="dresscode-label">Traje</p>
             <p class="dresscode-title">Esporte Fino</p>
             <p class="dresscode-note">
-                Dezembro no Brasil pede roupa leve — vem confortável e bonito do jeito que você preferir.
+                Dezembro no Brasil pede roupa leve, vem confortável e bonito do jeito que você preferir.
             </p>
         </div>
     </div>
@@ -1262,31 +1298,31 @@
         </div>
         <div class="info-grid">
             <div class="info-card reveal delay-1">
-                <div class="info-icon">🚗</div>
-                <h3 class="info-title">Estacionamento</h3>
+                <div class="info-icon">⛪</div>
+                <h3 class="info-title">Igreja</h3>
                 <p class="info-text">
-                    Tem estacionamento tanto na igreja quanto na Chácara. Pode vir de carro sem preocupação.
+                    Pedimos gentilmente que não joguem arroz ou pétalas ao sairmos da cerimônia. Entendemos que é um momento lindo, e há formas ainda mais bonitas de festejar!
                 </p>
             </div>
             <div class="info-card reveal delay-2">
-                <div class="info-icon">🏨</div>
-                <h3 class="info-title">Hospedagem</h3>
+                <div class="info-icon">🚗</div>
+                <h3 class="info-title">Estacionamento</h3>
                 <p class="info-text">
-                    Tem bastante hotel em Uberlândia — é só dar uma busca nas proximidades. Quanto antes reservar, melhor!
+                    A Igreja fica no centro e a cerimônia é perto do almoço, então vagas podem ser disputadas. Chegue cedinho! Na chácara, terá espaço reservado com conforto e segurança.
                 </p>
             </div>
             <div class="info-card reveal delay-3">
-                <div class="info-icon">✈️</div>
-                <h3 class="info-title">Como Chegar</h3>
+                <div class="info-icon">🏨</div>
+                <h3 class="info-title">Hospedagem</h3>
                 <p class="info-text">
-                    Uberlândia tem aeroporto com voos diretos de SP e outros estados. De carro, é fácil pela BR-050 ou BR-365.
+                    Em breve vamos disponibilizar opções de hospedagem para ajudá-los a ficarem bem localizados. Fiquem de olho!
                 </p>
             </div>
             <div class="info-card reveal delay-1">
                 <div class="info-icon">📋</div>
-                <h3 class="info-title">Confirmação de Presença</h3>
+                <h3 class="info-title">Confirmação</h3>
                 <p class="info-text">
-                    Em breve traremos mais detalhes aqui sobre como confirmar. Fica de olho!
+                    Vamos passar a lista em breve para deixarmos tudo certinho, e garantir que o grande dia fique lindo e perfeito para todos!
                 </p>
             </div>
         </div>
@@ -1301,11 +1337,11 @@
             <div class="sec-rule"></div>
         </div>
         <p class="presentes-text reveal">
-            Agradecemos demais ter você em nossas vidas — poder partilhar esse
-            momento com você já é o maior presente. Mas se quiser nos dar um
-            empurrãozinho, tem uma listinha esperando por você!
+            Somos gratos em ter você em nossas vidas, poder partilhar esse
+            momento com você já é o maior presente. Mas se quiser nos dar um presente,
+            tem uma listinha esperando por você!
         </p>
-        <a href="https://priecassio.casar.com" target="_blank" rel="noopener"
+        <a href="https://noivos.casar.com/priscilla-e-cassio/#/presentes" target="_blank" rel="noopener"
            class="btn-gift reveal delay-1">
             Ver Lista de Presentes
         </a>
@@ -1315,7 +1351,7 @@
 <!-- ────────────────── FOOTER ────────────────── -->
 <footer>
     <img src="assets/carro.png" alt="P + C" class="footer-car">
-    <p class="footer-names">Pri &amp; Cássio</p>
+    <p class="footer-names">Pri <span class="amp">&amp;</span> Cássio</p>
     <p class="footer-date">19 &middot; 12 &middot; 2026 &middot; Uberlândia, MG</p>
     <p class="footer-note">feito com muito amor e carinho ♡</p>
 </footer>
@@ -1393,11 +1429,6 @@
         });
     }, { threshold: 0.08 });
     reveals.forEach(r => io.observe(r));
-
-    /* ── Hero bg texture ── */
-    window.addEventListener('load', () => {
-        document.getElementById('heroBg').classList.add('loaded');
-    });
 
     /* ── Carousel ── */
     const track      = document.getElementById('carouselTrack');
