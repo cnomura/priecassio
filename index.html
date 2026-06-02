@@ -6,7 +6,7 @@
     <meta name="description" content="Casamento de Priscilla e Cássio, 19 de Dezembro de 2026, Uberlândia - MG">
     <title>Pri & Cássio, 19.12.2026</title>
 
-    <link rel="icon" href="assets/Logo/4.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/Logo/logo.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,11 +49,17 @@
 
         body {
             font-family: 'Schoolbell', cursive;
-            background: var(--bg);
+            /* background.jpeg como fundo fixo de todo o site — seções semi-transparentes revelam a foto */
+            background: var(--bg) url('assets/background.jpeg') center/cover fixed;
             color: var(--text);
             overflow-x: hidden;
             line-height: 2.1;
             letter-spacing: 0.03em;
+        }
+
+        /* desativa paralaxe no mobile (performance) */
+        @media (max-width: 768px) {
+            body { background-attachment: scroll; }
         }
 
         img { max-width: 100%; display: block; }
@@ -69,19 +75,28 @@
             justify-content: center;
             overflow-y: auto;
             background-color: var(--bg);
-            background-image: url('assets/background.png');
-            background-size: 820px;
-            background-repeat: repeat;
+            /* background-footer.jpeg na tela de carregamento */
+            background-image: url('assets/background-footer.jpeg');
+            background-size: cover;
+            background-position: center;
             transition: opacity 0.9s ease, visibility 0.9s ease;
+        }
+        #splash::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(248,242,233,0.68);
+            z-index: 0;
+            pointer-events: none;
         }
         #splash.hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
-        .splash-pattern { display: none; }
         #splash-btn {
             position: relative;
+            z-index: 1;
             background: none;
             border: none;
             cursor: pointer;
@@ -105,7 +120,7 @@
             font-size: 1.3rem;
             color: var(--green);
             letter-spacing: 0.12em;
-            opacity: 0.75;
+            opacity: 0.85;
             text-align: center;
         }
 
@@ -169,7 +184,7 @@
             cursor: pointer;
             padding: 6px;
             position: relative;
-            z-index: 6;
+            z-index: 252;
             width: 36px; height: 36px;
         }
         .nav-toggle span {
@@ -183,6 +198,64 @@
         .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+        /* ── MOBILE MENU BACKDROP ───────────────────────────── */
+        .menu-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(42,31,26,0.38);
+            z-index: 240;
+            cursor: pointer;
+        }
+        .menu-backdrop.open { display: block; }
+
+        /* ── MOBILE MENU DRAWER ─────────────────────────────── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            width: min(260px, 76vw);
+            height: 100%;
+            height: 100dvh;
+            background: var(--bg);
+            z-index: 251;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+            list-style: none;
+            padding: 4rem 2.5rem 2.5rem;
+            box-shadow: -6px 0 32px rgba(42,31,26,0.14);
+            overflow-y: auto;
+        }
+        .mobile-menu.open {
+            display: flex;
+            animation: menuSlideIn 0.28s cubic-bezier(.25,.46,.45,.94) both;
+        }
+        @keyframes menuSlideIn {
+            from { transform: translateX(105%); }
+            to   { transform: translateX(0); }
+        }
+        .mobile-menu li {
+            width: 100%;
+            border-bottom: 1px solid rgba(113,125,59,0.12);
+        }
+        .mobile-menu li:first-child { border-top: 1px solid rgba(113,125,59,0.12); }
+        .mobile-menu a {
+            font-family: 'Lazy Designer', Georgia, serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.07em;
+            color: var(--green);
+            text-decoration: none;
+            display: block;
+            padding: 0.95rem 0;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+        .mobile-menu a:hover {
+            color: var(--purple);
+            padding-left: 0.4rem;
+        }
+
         /* ── HERO ───────────────────────────────────────────── */
         #hero {
             position: relative;
@@ -193,10 +266,10 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background-color: var(--bg);
+            /* background.jpeg do body mostra através desta seção */
+            background-color: rgba(248,242,233,0.80);
+            scroll-margin-top: 0;
         }
-
-        .hero-pattern { display: none; }
 
         .hero-content {
             position: relative;
@@ -255,7 +328,10 @@
             margin: 3rem 0;
         }
 
-        .portrait { text-align: center; }
+        .portrait {
+            text-align: center;
+            flex: 0 0 auto;
+        }
 
         .portrait img {
             margin: 0 auto;
@@ -319,37 +395,6 @@
             color: var(--muted);
             display: block;
             margin-top: 0.5rem;
-        }
-
-        .scroll-cue {
-            position: absolute;
-            bottom: 1.8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
-            animation: heroFadeIn 2s ease 1.5s both;
-        }
-
-        .scroll-cue-line {
-            width: 1px; height: 32px;
-            background: linear-gradient(to bottom, var(--green), transparent);
-        }
-
-        .scroll-cue-arrow {
-            font-size: 1.4rem;
-            color: var(--green);
-            opacity: 0.5;
-            animation: scrollBounce 2s ease-in-out infinite;
-            line-height: 1;
-        }
-
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); opacity: 0.4; }
-            50%       { transform: translateY(6px); opacity: 0.8; }
         }
 
         .countdown-outro {
@@ -416,9 +461,14 @@
             margin: 1.4rem auto 0;
         }
 
+        /* scroll-margin compensa a nav fixa em todos os destinos de âncora */
+        #welcome, #historia, #grande-dia, #galeria, #informacoes, #presentes {
+            scroll-margin-top: 110px;
+        }
+
         /* ── WELCOME ────────────────────────────────────────── */
         #welcome {
-            background-color: var(--bg);
+            background-color: rgba(248,242,233,0.86);
             padding: 5rem 0 6rem;
         }
 
@@ -430,6 +480,7 @@
             max-width: 740px;
             margin: 0 auto;
             line-height: 2.2;
+            text-wrap: pretty;
         }
 
         .welcome-sig {
@@ -442,7 +493,7 @@
 
         /* ── NOSSA HISTÓRIA ─────────────────────────────────── */
         #historia {
-            background-color: var(--bg2);
+            background-color: rgba(238,229,216,0.86);
             position: relative;
             overflow: hidden;
         }
@@ -455,6 +506,7 @@
             max-width: 700px;
             margin: 0 auto;
             line-height: 2.2;
+            text-wrap: pretty;
         }
 
         .historia-prose p + p { margin-top: 1.6rem; }
@@ -495,7 +547,7 @@
             width: 12px; height: 12px;
             border-radius: 50%;
             background: var(--green);
-            border: 3px solid var(--bg2);
+            border: 3px solid rgba(238,229,216,0.86);
             box-shadow: 0 0 0 1px var(--green);
         }
 
@@ -517,11 +569,12 @@
             font-size: 1.2rem;
             color: var(--muted);
             line-height: 2.0;
+            text-wrap: pretty;
         }
 
         /* ── O GRANDE DIA ───────────────────────────────────── */
         #grande-dia {
-            background: var(--bg);
+            background: rgba(248,242,233,0.86);
             color: var(--text);
             padding: 7rem 0;
             position: relative;
@@ -581,6 +634,7 @@
             color: var(--muted);
             line-height: 1.9;
             margin-bottom: 1.4rem;
+            text-wrap: pretty;
         }
 
         .btn-map {
@@ -630,15 +684,12 @@
             max-width: 480px;
             margin: 0 auto;
             line-height: 2.1;
+            text-wrap: pretty;
         }
 
         /* ── GALLERY CAROUSEL ───────────────────────────────── */
         #galeria {
-            background-color: var(--bg2);
-            background-image: url('assets/background listrado.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: rgba(238,229,216,0.86);
             padding: 7rem 0;
         }
 
@@ -766,7 +817,7 @@
 
         /* ── INFORMAÇÕES ────────────────────────────────────── */
         #informacoes {
-            background-color: var(--bg);
+            background-color: rgba(248,242,233,0.86);
             padding: 7rem 0;
         }
 
@@ -778,7 +829,7 @@
         }
 
         .info-card {
-            background: var(--bg2);
+            background: rgba(255,255,255,0.55);
             border: 1px solid rgba(113,125,59,.12);
             border-radius: 6px;
             padding: 2.8rem 2rem;
@@ -804,11 +855,12 @@
             font-size: 1.15rem;
             color: var(--muted);
             line-height: 2.0;
+            text-wrap: pretty;
         }
 
         /* ── PRESENTES ──────────────────────────────────────── */
         #presentes {
-            background-color: #F7E5ED;
+            background-color: rgba(247,229,237,0.88);
             padding: 7rem 0;
             text-align: center;
         }
@@ -823,6 +875,7 @@
             max-width: 580px;
             margin: 2.5rem auto;
             line-height: 2.2;
+            text-wrap: pretty;
         }
 
         .btn-gift {
@@ -843,13 +896,26 @@
             transform: translateY(-3px);
         }
 
+        /* ── FOOTER BANNER ──────────────────────────────────── */
+        .footer-banner {
+            margin: 2.5rem -2rem 0;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .footer-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* ── FOOTER ─────────────────────────────────────────── */
         footer {
-            background: var(--bg2);
+            background: rgba(238,229,216,0.9);
             color: var(--muted);
             text-align: center;
-            padding: 4.5rem 2rem;
+            padding: 4.5rem 2rem 0;
             border-top: 1px solid rgba(113,125,59,0.15);
+            overflow: hidden;
         }
 
         .footer-car {
@@ -892,42 +958,20 @@
         .reveal.delay-3 { transition-delay: 0.3s; }
         .reveal.in { opacity: 1; transform: none; }
 
-        /* ── MOBILE MENU OVERLAY ─────────────────────────────── */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            z-index: 150;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a {
-            font-family: 'Lazy Designer', Georgia, serif;
-            font-size: 2.2rem;
-            letter-spacing: 0.06em;
-            color: var(--green);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .mobile-menu a:hover { color: var(--purple); }
-
         /* ── RESPONSIVE ─────────────────────────────────────── */
         @media (max-width: 768px) {
             .nav-links  { display: none; }
             .nav-toggle { display: flex; }
 
-            .portraits { gap: 1.5rem; }
-            .portrait-lg img { width: 120px; }
-            .portrait-sm img { width: 90px; }
-            .portrait-name { font-size: 1.3rem; }
-            .portrait-role { font-size: 0.85rem; }
+            .portraits {
+                gap: 1rem;
+                /* flex-wrap permanece nowrap — cabe numa linha com tamanhos menores */
+            }
+            .portrait { flex: 1 1 0; min-width: 0; }
+            .portrait-lg img { width: 100px; }
+            .portrait-sm img { width: 78px; }
+            .portrait-name { font-size: 1.2rem; }
+            .portrait-role { font-size: 0.82rem; }
 
             .timeline::before { left: 12px; transform: none; }
             .tl-item {
@@ -962,7 +1006,6 @@
             #grande-dia .sec-title { font-size: clamp(3rem, 11vw, 5rem); }
 
             .hero-content { padding: 6rem 1rem 3rem; }
-            .portraits { flex-wrap: wrap; }
 
             .nav-logo-img { height: 62px; }
 
@@ -974,6 +1017,12 @@
             .hero-content { padding: 6rem 1rem 3rem; }
             .container { padding: 0 1.2rem; }
             .info-grid { grid-template-columns: 1fr; }
+
+            .portrait-lg img { width: 88px; }
+            .portrait-sm img { width: 68px; }
+            .portrait-name { font-size: 1.05rem; }
+            .portrait-role { font-size: 0.78rem; }
+            .portraits { gap: 0.6rem; }
         }
     </style>
 </head>
@@ -981,7 +1030,6 @@
 
 <!-- ────────────────── SPLASH ────────────────── -->
 <div id="splash">
-    <div class="splash-pattern"></div>
     <button id="splash-btn" aria-label="Entrar no site">
         <img src="assets/Logo/logo.png" alt="Pri &amp; Cássio" class="splash-logo">
         <p class="splash-welcome">seja muito bem-vindo!</p>
@@ -991,7 +1039,7 @@
 
 <!-- ────────────────── NAV ────────────────── -->
 <nav id="nav">
-    <a href="#hero" class="nav-logo">
+    <a href="#hero-mid" class="nav-logo">
         <img src="assets/Logo/logo.png" alt="Pri &amp; Cássio" class="nav-logo-img">
     </a>
     <ul class="nav-links">
@@ -1007,7 +1055,8 @@
     </button>
 </nav>
 
-<!-- Menu mobile -->
+<!-- Backdrop e menu mobile -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
 <ul class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <li><a href="#welcome"     class="mob-link">Bem-vindo</a></li>
     <li><a href="#historia"    class="mob-link">Nossa História</a></li>
@@ -1022,7 +1071,7 @@
     <div class="hero-content">
         <p class="hero-eyebrow">Uberlândia &middot; Minas Gerais</p>
         <h1 class="hero-names">Pri <span class="hero-amp">&amp;</span> Cássio</h1>
-        <p class="hero-date">19 &nbsp;♡&nbsp; 12 &nbsp;♡&nbsp; 2026</p>
+        <p class="hero-date" id="hero-mid">19 &nbsp;♡&nbsp; 12 &nbsp;♡&nbsp; 2026</p>
 
         <div class="portraits">
             <div class="portrait portrait-lg">
@@ -1130,7 +1179,7 @@
                 a minha mãe também. No meio de tanta coisa boa, veio a nossa
                 maior surpresa: a doce Maria Flora. Ter a sensação de ligar
                 para familiares e contar a boa nova é tão satisfatório! Quando
-                ela nasceu, foi um dos dias mais felizes de nossas vidas —
+                ela nasceu, foi um dos dias mais felizes de nossas vidas,
                 não sabemos descrever em palavras o quão somos abençoados.
             </p>
             <p>
@@ -1142,7 +1191,7 @@
         <div class="timeline reveal">
             <div class="tl-item">
                 <div class="tl-body">
-                    <p class="tl-year">2016</p>
+                    <p class="tl-year">dezembro 2016</p>
                     <p class="tl-desc">Um match no app, uma conversa que não parava e um WhatsApp que mudou tudo</p>
                 </div>
                 <div class="tl-dot"></div>
@@ -1168,13 +1217,13 @@
                 <div class="tl-void"></div>
                 <div class="tl-dot"></div>
                 <div class="tl-body">
-                    <p class="tl-year">2023</p>
+                    <p class="tl-year">junho de 2023</p>
                     <p class="tl-desc">Portugal, um país incrível, pessoas de bom coração e mais um sonho realizado juntos</p>
                 </div>
             </div>
             <div class="tl-item">
                 <div class="tl-body">
-                    <p class="tl-year">Maria Flora</p>
+                    <p class="tl-year">novembro de 2024</p>
                     <p class="tl-desc">A nossa maior e mais amada surpresa, ela chegou e nos ensinou o que é amor de verdade</p>
                 </div>
                 <div class="tl-dot"></div>
@@ -1249,31 +1298,27 @@
             <button class="car-btn car-prev" id="carPrev" aria-label="Anterior">&#8249;</button>
             <div class="carousel-track" id="carouselTrack">
                 <div class="car-slide"><img src="assets/photos/LN-104.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7864.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-105.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7870.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-106.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-107.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_20170613_105410_866.jpg" alt="" loading="lazy"></div>
                 <div class="car-slide"><img src="assets/photos/_MG_7874.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-108.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-109.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7877.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-110.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7880.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-111.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-112.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7896.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-113.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-114.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7917.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-115.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-116.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/_MG_7922.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-117.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-118.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/20200628_070321.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-105.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_20190620_135530.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-106.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/20200911_101336.jpg" alt="" loading="lazy"></div>
                 <div class="car-slide"><img src="assets/photos/_MG_6542.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-119.jpg" alt="" loading="lazy"></div>
-                <div class="car-slide"><img src="assets/photos/LN-120.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_20200223_154830.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-107.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_20200623_203528_296.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/20200916_104511.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-108.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/dfuns%202024-09-04%20115620.808.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/LN-109.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/dqs%202024-10-19%20144904.839.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_6179.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_9928.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_7059.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_8663.jpg" alt="" loading="lazy"></div>
+                <div class="car-slide"><img src="assets/photos/IMG_1804.jpg" alt="" loading="lazy"></div>
             </div>
             <button class="car-btn car-next" id="carNext" aria-label="Próximo">&#8250;</button>
         </div>
@@ -1354,6 +1399,9 @@
     <p class="footer-names">Pri <span class="amp">&amp;</span> Cássio</p>
     <p class="footer-date">19 &middot; 12 &middot; 2026 &middot; Uberlândia, MG</p>
     <p class="footer-note">feito com muito amor e carinho ♡</p>
+    <div class="footer-banner">
+        <img src="assets/footer.png" alt="">
+    </div>
 </footer>
 
 <script>
@@ -1402,23 +1450,31 @@
     onScroll();
 
     /* ── Mobile nav ── */
-    const toggle     = document.getElementById('navToggle');
+    const toggle   = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('menuBackdrop');
 
-    toggle.addEventListener('click', () => {
-        const open = mobileMenu.classList.toggle('open');
-        toggle.classList.toggle('open', open);
-        mobileMenu.setAttribute('aria-hidden', String(!open));
-        document.body.style.overflow = open ? 'hidden' : '';
-    });
+    function openNav() {
+        mobileMenu.classList.add('open');
+        toggle.classList.add('open');
+        backdrop.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
 
     function closeNav() {
         mobileMenu.classList.remove('open');
         toggle.classList.remove('open');
+        backdrop.classList.remove('open');
         mobileMenu.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
     }
 
+    toggle.addEventListener('click', () => {
+        mobileMenu.classList.contains('open') ? closeNav() : openNav();
+    });
+
+    backdrop.addEventListener('click', closeNav);
     document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeNav));
 
     /* ── Reveal on scroll ── */
