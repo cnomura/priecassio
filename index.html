@@ -1179,8 +1179,11 @@
                 Lá realizamos grandes sonhos, como a primeira viagem internacional
                 dos pais da Pri, recebemos praticamente a família toda
                 em 2024 com a chegada da Florinha e do nosso amado sobrinho Samuel.
-                A Bachan veio com o paipai diretamente do Japão para conhecerem seus netinhos,
-                isso foi um momento tão íncrivel e especial para todos nós, que jamais vamos esquecer!
+                A vovó Fufu veio com o paipai diretamente do Japão para conhecerem seus netinhos,
+                isso foi um momento tão íncrivel e especial para todos nós,
+                que jamais vamos esquecer!
+                A Madrinha e o Padrinho da Florinha vieram pra Portugal e puderem
+                pegar a Florinha no colo pela primeira vez.
             </p>
             <p>
                 A vida vem nos agraciando e nos transformando a cada dia, e hoje
@@ -1508,7 +1511,8 @@
     }
 
     function updateDots() {
-        const activePage = Math.floor(carCurrent / perView);
+        const pageCount = Math.ceil(total / perView);
+        const activePage = carCurrent >= total - perView ? pageCount - 1 : Math.floor(carCurrent / perView);
         dotsEl.querySelectorAll('.c-dot').forEach((d, i) => {
             d.classList.toggle('active', i === activePage);
         });
